@@ -54,7 +54,7 @@
       }index.html`;
 
       // 샘플 목록
-      const itemList = [
+      let itemList = [
         { no: 1, title: "두부", done: true },
         { no: 2, title: "계란", done: false },
         { no: 3, title: "라면", done: true },
@@ -142,6 +142,13 @@
         // </li>
         titleElem.setAttribute("onclick", `toggleDone(${item.no})`);
 
+        // <li data-no="1">
+        //   <span>1</span>
+        //   <span onclick="toggleDone(1)"><s>샘플1</s></span>
+        //   <button type="button" onclick="deleteItem(1)">삭제</button>
+        // </li>
+        deleteElem.setAttribute("onclick", `deleteItem(${item.no})`);
+
         return liElem;
       }
 
@@ -206,7 +213,16 @@
       }
 
       // 할일 삭제
-      function deleteItem(no) {}
+      function deleteItem(no) {
+        // Todo: 데이터 갱신
+        itemList = itemList.filter((item) => item.no !== no);
+
+        // Todo: 화면 갱신
+        const selectedLiElem = document.querySelector(
+          `.todolist > li[data-no="${no}"]`
+        );
+        selectedLiElem.remove();
+      }
     </script>
   </body>
 </html>
