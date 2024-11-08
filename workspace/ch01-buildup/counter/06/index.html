@@ -15,7 +15,7 @@
         return Yong.createElement(
           "header",
           null,
-          Yong.createElement("h1", null, "Counter - 컴포넌트로 분리"),
+          Yong.createElement("h1", null, "Counter - 상태 변경시 자동 리렌더링"),
           Yong.createElement(
             "p",
             null,
@@ -30,24 +30,17 @@
       }
 
       function Counter() {
-        let count = 0;
+        // let count = 0;
+        const [count, setCount] = Yong.useState(10);
 
         const handleDown = () => {
-          // TODO: 데이터 갱신
-          count--;
-          // TODO: 화면 갱신
-          const counterSpan = document.querySelector("#counter > span");
-          counterSpan.textContent = count;
+          setCount(count - 1);
         };
         const handleUp = () => {
-          count++;
-          const counterSpan = document.querySelector("#counter > span");
-          counterSpan.textContent = count;
+          setCount(count + 1);
         };
         const handleReset = (event) => {
-          count = 0;
-          const counterSpan = document.querySelector("#counter > span");
-          counterSpan.textContent = count;
+          setCount(0);
         };
 
         return Yong.createElement(
@@ -55,7 +48,7 @@
           { id: "counter" },
           Yong.createElement(
             "button",
-            { type: "button", OnCLicK: handleDown },
+            { type: "button", onclick: handleDown },
             "-"
           ),
           Yong.createElement(
@@ -68,7 +61,7 @@
             { type: "button", onclick: handleUp },
             "+"
           ),
-          Yong.createElement("span", null, 0)
+          Yong.createElement("span", null, count)
         );
       }
 
