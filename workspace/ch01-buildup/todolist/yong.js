@@ -69,8 +69,12 @@ const yong = (() => {
 
       console.log("상태가 변경되었나?", oldValue, newValue);
       // 두 값이 같은지 비교해서 같지 않을 경우에(상태가 변경된 경우) 리렌더링한다.
+      // 객체 둘을 비교하는 경우, true/false는 각 객체 안에 같은 값이 들어있는지가 아니라, 각 객체가 같은 메모리 주소를 가리키는지 여부로 판단됨!
+      // 두 값이 모두 undefined 또는 null이면 true
+      // 두 값이 모두 true 또는 false면 true
+      // String 둘을 비교할 경우 둘의 글자 수, 순서, 모든 글자가 같으면 true
+      // Number 둘을 비교할 경우 값이 같거나 둘 다 NaN이면 true
       if (!Object.is(oldValue, newValue)) {
-        console.log("리렌더링");
         _root.render();
       }
     }
