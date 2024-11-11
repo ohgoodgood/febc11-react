@@ -1,15 +1,14 @@
-import yong from "../yong.js";
-import App from "./src/pages/App.js";
+import yong from '../yong.js';
+import App from './src/pages/App.js';
 
 /*
-          ┌───────── App ──────────┐
-          │           │            │
-        Header       Todo        Footer
-                      │
-                  ┌───┴────┐
-            TodoInput   TodoList
-                           │
-                        TodoItem
+      ┌───────── App ──────────┐
+      │           │            │
+    Header       Todo        Footer
+                  │
+              ┌───┴────┐
+        TodoInput   TodoList
+                        │
+                    TodoItem
 */
-
-yong.createRoot(document.getElementById("root")).render(App);
+yong.createRoot(document.getElementById('root')).render(App);
