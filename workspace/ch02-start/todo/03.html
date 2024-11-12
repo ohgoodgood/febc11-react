@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Todo List</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // 컴포넌트를 재사용하려면?
+      // 1. 독립적인 파일(모듈)로 분리
+      // 2. 범용성(데이터를 전달 받아서 동적으로 출력해야 함)
+      function Title(props) {
+        return (
+          <div>
+            <h1>Simple Todo List - {props.title} :()</h1>
+            <hr />
+          </div>
+        );
+      }
+
+      function TodoList({ list }) {
+        const itemList = list.map((item) => (
+          <li key={item._id}> {item.title} </li>
+        ));
+        return <ul className="todolist"> {itemList} </ul>;
+      }
+
+      function App() {
+        const title = "React Props";
+        const list = [
+          { _id: 1, title: "리그 오브 레전드", done: false },
+          { _id: 2, title: "영화 보기", done: false },
+          { _id: 3, title: "던파", done: false },
+        ];
+        return (
+          <div id="app">
+            <div>
+              <Title title={title} />
+              <TodoList list={list} />
+            </div>
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
