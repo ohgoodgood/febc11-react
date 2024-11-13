@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 function Counter() {
   let [count, setCount] = React.useState(0);
@@ -15,15 +16,9 @@ function Counter() {
 
   return (
     <div id="counter">
-      <button type="button" onClick={handleDown}>
-        -
-      </button>
-      <button type="button" onClick={(event) => handleReset(event)}>
-        0
-      </button>
-      <button type="button" onClick={handleUp}>
-        +
-      </button>
+      <Button onClick={handleDown}>-</Button>
+      <Button onClick={(event) => handleReset(event)}>0</Button>
+      <Button onClick={handleUp}>+</Button>
       <span>{count}</span>
     </div>
   );
