@@ -1,5 +1,6 @@
 import { useState } from "react";
 import EditAddress from "./components/EditAddress";
+import { produce } from "immer";
 
 function App() {
   const [user, setUser] = useState({
@@ -38,21 +39,32 @@ function App() {
     // const newState = { ...user };
 
     // 상태의 불변성을 지키기 위해 복잡한 추가 작업 필요
-    const newAddressBook = user.extra.addressBook.map((address) => {
-      if (address.id === Number(event.target.name)) {
-        return { ...address, value: event.target.value };
-      } else {
-        return address;
-      }
-    });
+    // const newAddressBook = user.extra.addressBook.map((address) => {
+    //   if (address.id === Number(event.target.name)) {
+    //     return { ...address, value: event.target.value };
+    //   } else {
+    //     return address;
+    //   }
+    // });
 
-    const newState = {
-      ...user,
-      extra: {
-        ...user.extra,
-        addressBook: newAddressBook,
-      },
-    };
+    // const newState = {
+    //   ...user,
+    //   extra: {
+    //     ...user.extra,
+    //     addressBook: newAddressBook,
+    //   },
+    // };
+
+    // immer를 사용해서 불변성 유지
+    // immer의 produce 함수가 user를 복사한 새로운 객체(draft)에 변경사항을 반영하여 반환 (proxy 객체로 얕은복사를 먼저 해 둔 다음에, 변경된 state가 있는 경우 필요에 따라 선택적 깊은 복사 진행)
+    const newState = produce(user, (draft) => {
+      console.log(user);
+      console.log(draft);
+      const address = draft.extra.addressBook.find(
+        (address) => address.id === Number(event.target.name)
+      );
+      address.value = event.target.value;
+    });
 
     setUser(newState);
 
