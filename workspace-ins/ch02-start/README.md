@@ -6,29 +6,31 @@
 * 페이스북에서 만든 웹 UI를 작성하기 위한 자바스크립트 라이브러리
 
 ### React의 특징
-* SPA의 단점을 보완하는 몇가지 기술을 도입
+* SPA의 단점을 보완하는 다양한 기술 도입
+
 * SPA의 단점
-  - 모든 기능을 한 페이지에서 다 구현하다 보니 상태(데이터) 관리가 어려움
-  - 자바스크립트에서 HTML 코드를 생성해야 하므로 개발 생산성 저하
-  - 브라우저의 DOM을 자주 갱신하다보면 성능 저하 발생
-* SPA의 단점을 보완하는 React의 특징
-  - 컴포넌트 별로 상태 관리가 가능하고 전역 수준의 상태 관리를 지원하는 서드파티 라이브러리가 많음
-  - JSX를 이용해서 HTML 생산성이 높음
-  - 가상 DOM을 이용해서 성능 저하 최소
+  - 모든 기능을 한 페이지에서 처리하다 보니 상태 관리가 복잡함
+  - JavaScript에서 HTML을 생성해야 하므로 개발 생산성이 떨어짐
+  - 브라우저의 DOM을 빈번히 갱신하면 성능 저하가 발생
+
+* React의 장점 (SPA의 단점 보완)
+  - 컴포넌트별로 상태 관리가 용이하고, 전역 상태 관리를 지원하는 서드파티 라이브러리가 많음
+  - JSX를 통해 HTML 생성이 간편함
+  - 가상 DOM을 사용해 성능 저하를 최소화함
 
 #### 컴포넌트 기반 개발
-  * 화면의 일부 UI를 만드는 컴포넌트 단위로 개발
-  * 컴포넌트는 자바스크립트로 개발하며 재사용성이 뛰어남
+* 화면의 UI를 컴포넌트 단위로 개발
+* 컴포넌트는 자바스크립트로 개발되며 재사용성이 뛰어남
 
 #### 상태 관리와 단방향 데이터 바인딩
-  * 각각의 컴포넌트 내부에서 상태 관리 기능 제공
-  * 전역 수준의 상태 관리를 위한 라이브러리(Context API, Redux, MobX, Recoil, Zustand 등)를 사용할 수 있음
-  * 상태가 변경되면 뷰(UI, HTML)를 즉시 렌더링
-  * 단방향 데이터 바인딩: State -> View, View -> Event Handler -> setState() -> State
-    - View의 변경이 직접 State를 변경시키지 않고 Event Handler를 통해서만 변경 가능하게 구현해야 하므로 상태가 변경되는 과정에 대한 예측과 추적이 용이함
+* 각 컴포넌트는 내부에서 상태 관리 기능을 제공
+* 전역 상태 관리를 위한 라이브러리(Context API, Redux, MobX, Recoil, Zustand 등)를 사용할 수 있음
+* 상태 변경 시 뷰(UI, HTML)가 즉시 렌더링됨
+* 단방향 데이터 바인딩: State -> View, View -> Event Handler -> setState() -> State
+  - View의 변경은 직접 State를 수정하지 않고 Event Handler를 통해서만 변경 가능하여 이는 상태 변경 과정을 예측하고 추적하기 용이하게 만듬
 
 #### JSX (Javascript XML)
-* HTML 마크업과 비슷한 문법을 사용해서 UI 정의하면 Babel 같은 변환 도구에 의해 자바스크립트 코드로 변환됨
+* HTML 마크업과 비슷한 문법을 사용해서 UI를 정의하면 Babel, ESBuild 같은 변환 도구에 의해 자바스크립트 코드로 변환됨
   ```html
   <div class="todolist">
     <ul>
@@ -54,32 +56,33 @@
   ```
 
 #### 가상 DOM (Virtual DOM)
-* 상태가 변경되어서 뷰를 렌더링할때 브라우저 DOM에 바로 적용하지 않고 브라우저 DOM과 유사한 트리구조의 가상 DOM(자바스크립트 객체)을 먼저 수정한 후 수정전의 가상 DOM과 수정후의 가상 DOM을 비교해서 바뀐 부분만 브라우저 DOM에 실제 반영
+* 상태 변경 시 뷰를 렌더링할 때, 브라우저 DOM에 바로 적용하지 않고, 브라우저 DOM과 유사한 트리 구조의 가상 DOM(자바스크립트 객체)을 먼저 수정. 이후 수정 전후의 가상 DOM을 비교하여 바뀐 부분만 실제 브라우저 DOM에 반영
+
 * DOM API를 이용한 화면 갱신 방법
   - 수정된 부분만 찾아서 갱신
-    + 장점: 화면 렌더링을 최소화 하기 때문에 성능에 좋음
-    + 단점: 기존 데이터와 새로운 데이터를 비교해서 새로운 데이터가 기존 데이터의 어느 부분과 달라졌는지 확인하고 해당 요소를 DOM에서 찾아 갱신해야 하므로 코드가 복잡해짐
+    + 장점: 화면 렌더링을 최소화하여 성능이 좋음
+    + 단점: 기존 데이터와 새로운 데이터를 비교하여 달라진 부분을 확인하고 해당 요소를 DOM에서 찾아 갱신해야 하므로 코드가 복잡해짐
   - 관련 영역 전체를 갱신
-    + 장점: 기존 요소를 지우고 새로운 데이터로 전체를 교체하면 되므로 기존 데이터와 비교 작업이 필요 없고 수정될 부분만 찾아서 DOM을 갱신할 필요가 없으므로 코드가 간결해짐
-    + 단점: 하나만 수정해서 갱신하면 될 것을 관련 영역 전체를 다시 렌더링 하므로 성능 이슈 발생
+    + 장점: 기존 요소를 지우고 새로운 데이터로 전체를 교체하면 되므로, 기존 데이터와 비교하거나 수정된 부분을 찾아서 갱신할 필요가 없어 코드가 간결해짐
+    + 단점: 필요한 부분만 수정할 수 있는데도 관련 영역 전체를 다시 렌더링하므로 성능 이슈가 발생할 수 있음
   - 가상 DOM 이용
-    + 새로운 데이터를 가지고 만들어진 가상 DOM과 기존 DOM을 비교해서 바뀐 부분만 찾아서 브라우저 DOM을 갱신하므로 성능에 좋음
-    + 바뀐 부분만 찾아서 리렌더링 하는 작업은 리액트가 담당하므로 코드가 간결해짐
+    + 새로운 데이터를 기반으로 생성된 가상 DOM과 기존 DOM을 비교하여 바뀐 부분만 찾아서 브라우저 DOM을 갱신하므로 성능에 유리함
+    + 리렌더링 작업은 리액트가 담당하므로 코드가 간결해짐
 
 ## 2-2 리액트 개발 환경 구축
 ### 툴체인
-* 리액트 앱을 개발할 때 필요한 개발 환경을 자동으로 구축 해주는 도구
-  - 보일러 플레이트 코드 제공
+* 리액트 앱 개발에 필요한 환경을 자동으로 구축해주는 도구
+  - 보일러플레이트 코드 제공
   - 프로젝트 설정 파일 자동 구성
-  - 필요 라이브러리 설치
-  - HMR(Hot Module Replacement): 개발시 소스 코드를 수정하면 컴포넌트를 자동으로 리로딩해서 브라우저의 새로고침 없이 곧바로 화면에 적용 가능
-  - 프로덕션 배포에 필요한 번들링 기능 제공
+  - 필요한 라이브러리 설치
+  - HMR(Hot Module Replacement): 개발 중 소스 코드를 수정하면 컴포넌트가 자동으로 리로딩되어 브라우저를 새로고침하지 않고도 바로 화면에 적용됨
+  - 프로덕션 배포를 위한 번들링 기능 제공
 
 #### create-react-app(CRA)
 * 리액트 개발팀에서 만든 리액트 전용 툴체인
 * workspace/ch02-start 폴더로 이동 후 다음 명령 실행
   - Need to install the following packages 메세지가 나오면 y 입력후 엔터
-  ```powershell
+  ```sh
   npx create-react-app cra
   # 생성한 프로젝트 폴더로 이동
   cd cra
@@ -89,17 +92,17 @@
 
 #### Vite
 * 프랑스어로 "빠르다"는 뜻
-* Webpack을 번들러로 사용하는 CRA 대비 Esbuild와 Rollup을 번들러로 사용하면서 10~100배 빠른 속도로 개발 서버 구동
+* Webpack을 번들러로 사용하는 CRA 대비 ESBuild와 Rollup을 번들러로 사용하면서 10~100배 빠른 속도로 개발 서버 구동
 * CRA는 리액트만 지원하는 반면 Vite는 Vanilla JS, React, Svelte, Solid 등의 다양한 SPA 개발 환경을 지원
 * workspace/ch02-start 폴더로 이동 후 다음 명령 실행
-  ```powershell
+  ```sh
   npm init vite@latest
   ```
   - 프로젝트 명: vite
   - 개발환경 선택: React
   - 개발언어 선택: JavaScript
 
-  ```powershell
+  ```sh
   # 생성한 프로젝트 폴더로 이동
   cd vite
   # 필요 패키지 설치
@@ -136,7 +139,7 @@
   })
   ```
 
-##### VSCode에서 alias로 import 했을 경우 Ctrl + 클릭시 해당 컴포넌트로 바로 이동하도록 설정
+##### VSCode에서 alias 인식
 * 프로젝트 루트에 jsconfig.json 파일 생성
   ```json
   {
@@ -152,15 +155,14 @@
   }
   ```
 
-##### VSCode에서 alias를 기준으로 import 자동 완성 설정
+##### VSCode에서 alias를 기준 import 자동 완성 설정
 * VSCode > File > Preferences > Settings > Import Module Specifier 검색
   - JavaScript › Preferences: Import Module Specifier 항목의 Preferred path style for auto imports. 값을 non-relative 로 지정
-  - User 탭과 Workspace 탭 모두 설정
 
 ## 2-3 리액트 애플리케이션 배포
 ### 프로젝트 빌드
 * 프로덕션 배포용 파일 생성
-  ```powershell
+  ```sh
   npm run build
   ```
 * 프로젝트 빌드
@@ -174,11 +176,11 @@
 
 ### 빌드된 파일로 서버 실행
 * CRA
-  ```powershell
+  ```sh
   npx serve -s build
   ```
 * Vite
-  ```powershell
+  ```sh
   npm run preview
   ```
 * serve의 -s 옵션: 리액트는 index.html 파일 하나에서 모든 페이지를 서비스하므로 클라이언트가 요청한 모든 URL에 대해서 index.html을 응답함
@@ -187,7 +189,7 @@
 
 ### JSX란?
 * JSX(JavaScript XML)는 자바스크립트 파일 내에 HTML과 유사한 마크업을 작성할 수 있게 해주는 자바스크립트 확장 구문
-* 리액트와 JSX는 별개이기 때문에 리액트에서 JSX 사용이 필수는 아님
+* 리엑트에서 사용할 목적으로 개발되기는 했지만 JSX가 리액트에 포함된 기술은 아니기 때문에 리액트에서 JSX 사용이 필수는 아님
   - React.createElement() 직접 사용
 
 ### JSX 규칙
@@ -290,7 +292,7 @@
 * if문, for 문 등은 사용할 수 없음
   - if문 대신 삼항 연산자 사용
     ```jsx
-    (item.done ? <s>두부</s> : '두부')
+    { item.done ? <s>두부</s> : '두부' }
     ```
   - for 문 대신 forEach(), map() 등 사용
     ```jsx
@@ -314,13 +316,12 @@
     const msg = '<i>World</i>';
     return <span>Hello { msg }</span>
   }
-  만들어지는 문자열: <span>Hello &lt;i&gt;World&lt;/i&gt;</span>
+  // 만들어지는 문자열: <span>Hello &lt;i&gt;World&lt;/i&gt;</span>
   ```
-* 예시 결과
+* 실행 결과
   - <span>Hello &lt;i&gt;World&lt;/i&gt;</span>
 * 해결 방법
   1. dangerouslySetInnerHTML 속성을 사용하면 HTML 태그를 인코딩하지 않음
-
     ```jsx
     const App(){
       // { msg }를 <span dangerouslySetInnerHTML={{ __html: msg }}></span>로 변경
@@ -329,7 +330,6 @@
     }
     ```
   2. JSX는 XSS 공격에 안전하므로 JSX를 사용
-
     ```jsx
     const App(){
       // const msg = '<i>World</i>';
@@ -398,7 +398,7 @@
     );
   }
   ```
-* Props로 객체를 전달 받을 때 자식 컴포넌트가 그 값을 직접 변경하는 것은 지양
+* Props로 객체를 전달 받을 때 자식 컴포넌트가 그 값을 직접 변경하는 것은 권장하지 않음
   - 리액트의 데이터는 상위 컴포넌트에서 하위 컴포넌트로 전달되는데 하위 컴포넌트에서 상위 컴포넌트의 데이터를 직접 수정하면 데이터의 흐름을 예측하기 어려워서 디버깅하기 어려운 오류를 만들 수 있음
 
 ## 2-6 상태 (State)
@@ -417,13 +417,13 @@
 * initialState: 상태값의 초기값(초기 렌더링 후 무시됨)
 
 ##### 리턴값
-* state: 상태값이 저장된 getter
+* state: 저장된 상태값
 * setState: 상태값을 변경하는 setter 함수. setter를 통해 상태가 변경되면 해당 컴포넌트는 다시 렌더링됨
 
 #### useState() 특징
 * 컴포넌트가 렌더링 되는 동안에만 사용할 수 있는 특별한 함수(훅, Hooks)
 * 컴포넌트의 최상위 수준이나 커스텀 훅 내부에서만 사용 가능(조건문, 반복문, 일반 함수 같은 블럭{ } 내부에서는 사용 불가)
-* 컴포넌트 내에서 여러번 사용하면 리액트가 관리하는 배열에 저장되므로 컴포넌트가 리렌더링 될때 마다 순서가 정확히 지켜져야 한다.
+* useState가 호출되는 순서대로 리액트가 관리하는 배열에 저장되므로 그 값을 제대로 찾기 위해서는 리렌더링 될때에도 순서가 정확히 지켜져야 함
   - 잘못된 사용 예시
     ```jsx
     const [firstName, setFirstName] = useState('Dragon');
@@ -432,8 +432,8 @@
     }  
     const [age, setAge] = useState(36);
     ```
-* state로 만든 변수는 컴포넌트를 여러곳에서 사용해도 각각의 값을 따로 관리
-  - 컴포넌트 외부에 선언한 변수는 컴포넌트 리렌더링 되어도 값이 유지되지만 해당 컴포넌트를 여러곳에서 사용할 경우 모든 컴포넌트가 공유하는 값이 되므로 컴포넌트 내부의 상태관리에 적합하지 않음
+* state로 만든 변수는 컴포넌트가 여러번 사용 될때에도 각각의 값을 따로 관리
+  - 컴포넌트 외부에 선언한 변수는 컴포넌트가 리렌더링 되어도 값이 유지되지만 해당 컴포넌트를 여러곳에서 사용할 경우 모든 컴포넌트가 공유하는 값이 되므로 컴포넌트 내부의 상태관리에 적합하지 않음
 
 ### 상태 사용시 유의사항
 * state가 변경되는 즉시 리렌더링이 되지 않고 이벤트 큐에 리렌더링 작업이 등록되므로 이벤트 핸들러의 모든 코드가 실행될 때까지 기다리게 됨
@@ -479,17 +479,17 @@
   - 추가: push(), unshift() 대신 concat(), [ ...arr ]
   - 삭제: pop(), shift() 대신 filter(), slice()
   - 수정: splice(), arr[i] 대신 map()
-  - 정렬: reverse(), sort() 바로 사용하지 말고 배열 복사 후 사용
+  - 정렬: reverse(), sort()를 바로 사용하지 말고 배열 복사 후 사용
 
 * 상태의 불변성을 구현할 경우 추후 성능 최적화를 위해 메모이제이션 작업을 수행할 때 Props의 변경 여부를 얕은 비교만으로 확인 할수 있어서 렌더링 최적화에 도움 
 * immer 라이브러리
   - 객체를 불변성으로 만들어주는 라이브러리
   - 설치
-    ```powershell
+    ```sh
     npm i immer
     ```
 
-  - 상태의 불변성을 유지하기 위한 예시
+  - 상태의 불변성을 유지하기 위해 직접 작성한 코드 예시
     ```js
     const newAddressBook = user.extra.addressBook.map(address => {
       if(address.id === Number(e.target.name)){
@@ -512,6 +512,8 @@
 
   - immer 사용 예시
     ```js
+    import { produce } from 'immer';
+    ...
     const newState = produce(user, draft => {
       const address = draft.extra.addressBook.find(address => address.id === Number(e.target.name));
       address.value = e.target.value;
@@ -521,10 +523,10 @@
     ```
 
 ## 2-7 유효성 검증
-### Props의 유효성 검증
-* 컴포넌트가 전달받은 Props의 유효성을 검증하는 기능
+### prop-types
+* 컴포넌트에 전달된 Props의 유효성을 검증하는 기능
 * 설치
-  ```powershell
+  ```sh
   npm i prop-types
   ```
 
@@ -581,7 +583,7 @@
   import PropTypes from 'prop-types';
 
   MyComponent.propTypes = {
-    // 특정 JS 타입임을 선언(해당 속성이 전달되지 않아도 됨)
+    // 특정 JS 타입임을 선언(해당 속성이 전달 된다면 지정한 타입이어야 함)
     optionalArray: PropTypes.array,
     optionalBool: PropTypes.bool,
     optionalFunc: PropTypes.func,
@@ -593,10 +595,10 @@
     // 모든 종류의 자식 요소(리액트 엘리먼트, 문자, 숫자, 배열, 불린, null, undefined 등)
     optionalNode: PropTypes.node,
 
-    // React 엘리먼트
+    // React 엘리먼트(JSX, React.createElement()로 생성된 엘리먼트)
     optionalElement: PropTypes.element,
 
-    // React 동적으로 로딩된 엘리먼트
+    // React 컴포넌트(클래스 컴포넌트, 함수 컴포넌트, HTML 태그명)
     optionalElementType: PropTypes.elementType,
 
     // 특정 클래스의 인스턴스
@@ -634,7 +636,7 @@
     // 위에 있는 모든 구문에 'isRequired'를 연결하면 해당 속성이 필수임을 나타냄
     requiredFunc: PropTypes.func.isRequired,
 
-    // 모든 데이터 타입이 가능한 필수값
+    // 타입은 상관없고 필수임을 나타낼때
     requiredAny: PropTypes.any.isRequired,
 
     // 사용자 정의 유효성 검사기를 지정
@@ -670,20 +672,22 @@
 ### Form의 유효성 검증
 * Form 태그의 사용자의 입력 데이터를 검증
 * react-hook-form 설치
-  ```powershell
+  ```sh
   npm i react-hook-form
   ```
 
 ## 2-8 컴포넌트 구분
+
 ### 컨테이너 컴포넌트와 표현 컴포넌트
 * 상태와 비즈니스 로직을 처리하는 컨테이너와 UI를 담당하는 컨테이너를 분리해서 설계
-* 컴포넌트의 역할이 명확해지고 표현 컴포넌트에서는 상태 관련 로직이 제거되므로 상태 관련 컴포넌트가 줄어들어 상태 추적이 용이하고 디버깅이 쉬워짐
+* 각 컴포넌트의 역할이 명확해지고 코드의 유지보수성이 향상
+* 표현 컴포넌트에서는 상태 관련 로직이 제거되므로 상태 관리와 UI 로직을 분리할 수 있으며, 결과적으로 상태 추적과 디버깅이 쉬워짐
 
 #### 컨테이너 컴포넌트
-* UI와 스타일은 담당하지 않고 상태를 정의하고 변경하며 비즈니스 로직을 포함하는 컨테이너
-* 하위에 표현 컴포넌트들을 가지고 있으며 표현 컴포넌트에 상태값을 Props로 전달하고 Props를 수정할 수 있는 콜백 함수도 전달
+* 상태 관리와 비즈니스 로직만 담당
+* 상태값을 Props로 하위 컴포넌트에 전달하고, 상태를 수정할 수 있는 콜백 함수를 전달
+* 하위에 표현 컴포넌트를 포함하여, 이 컴포넌트들이 UI를 렌더링할 때 필요한 데이터와 동작을 제공합니다.
 
 #### 표현 컴포넌트
-* 부모 컴포넌트로 부터 Props를 전달받아서 UI를 반환하는 기능만 담당
-* 상태를 관리하지 않기 때문에 구현이 단순해짐
-
+* 상태를 관리하지 않고, 부모 컴포넌트로부터 전달받은 Props를 기반으로 UI만 렌더링
+* UI를 반환하는 기능에만 집중하므로 구현이 단순해지고, 재사용성이 높아짐

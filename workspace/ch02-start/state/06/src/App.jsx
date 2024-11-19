@@ -17,6 +17,9 @@ function App() {
     watch,
     formState: { errors },
   } = useForm({
+    mode: "onBlur", // 최초 검증 시점, default: onSubmit
+    reValidateMode: "", // 재검증 시점, default: onChange
+    criteriaMode: "", // errors 객체에 첫 오류 하나만 포함하거나(firstError) 전부 포함(all), default: firstError
     defaultValues: {
       name: "",
       email: "",
@@ -41,6 +44,10 @@ function App() {
             minLength: {
               value: 2,
               message: "2글자 이상 입력하세요.",
+            },
+            pattern: {
+              value: /^[^\d]*$/, // 숫자는 포함할수 없음
+              message: "숫자는 입력할 수 없습니다.",
             },
           })}
         />
