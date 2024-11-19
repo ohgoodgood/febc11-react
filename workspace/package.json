@@ -11,10 +11,7 @@
   },
   "dependencies": {
     "immer": "^10.1.1",
-<<<<<<< HEAD
-=======
     "prop-types": "^15.8.1",
->>>>>>> f5b7854f52252f339f7354004980a4273e8321bc
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.2"
