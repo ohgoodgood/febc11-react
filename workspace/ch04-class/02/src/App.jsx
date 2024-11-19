@@ -1,10 +1,12 @@
-import { Component } from "react";
-import ChildComponent from "./FunctionBase";
+import { Component } from 'react';
+import ChildComponent from './FunctionBase';
 
 class App extends Component {
-  render() {
-    return <ChildComponent />;
+  render(){
+    return (
+      <ChildComponent />
+    );
   }
 }
 
-export default App;
+export default App
