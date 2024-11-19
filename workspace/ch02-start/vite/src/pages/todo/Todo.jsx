@@ -1,6 +1,6 @@
 import Title from "@components/Title";
 
-function Todo() {
+function Todo(){
   return (
     <div>
       <Title />
@@ -8,5 +8,4 @@ function Todo() {
     </div>
   );
 }
-
 export default Todo;

@@ -1,18 +1,18 @@
 import { Fragment } from "react";
 
-export default function EditAddress({ addressBook, handleAddressChange }) {
-  const list = addressBook.map((address) => {
+export default function EditAddress({ addressBook, handleAddressChange }){
+  const list = addressBook.map(address => {
     return (
-      <Fragment key={address.id}>
-        <label htmlFor={address.id}>{address.name}</label>
+      <Fragment key={ address.id }>
+        <label htmlFor={ address.id }>{ address.name }</label>
         <input
-          id={address.id}
+          id={ address.id }
           type="text"
-          name={address.id}
-          value={address.value}
-          onChange={handleAddressChange}
+          name={ address.id }
+          value={ address.value }
+          onChange={ handleAddressChange }
         />
-        <br />
+        <br/>
       </Fragment>
     );
   });
