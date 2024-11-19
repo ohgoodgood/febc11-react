@@ -1,13 +1,13 @@
-import { useState } from "react";
-import { produce } from "immer";
 import Todo from "@pages/Todo";
+import { produce } from "immer";
+import { useState } from "react";
 
-function TodoContainer() {
+function TodoContainer(){
   // 샘플 목록
   const sampleItemList = [
-    { _id: 1, title: "두부", done: true },
-    { _id: 2, title: "계란", done: false },
-    { _id: 3, title: "라면", done: true },
+    { _id: 1, title: '두부', done: true} ,
+    { _id: 2, title: '계란', done: false },
+    { _id: 3, title: '라면', done: true },
   ];
 
   const [itemList, setItemList] = useState(sampleItemList);
@@ -23,28 +23,27 @@ function TodoContainer() {
   const toggleDone = (_id) => {
     // 데이터 갱신(상태 변경)
     const newItemList = produce(itemList, (draft) => {
-      const item = draft.find((item) => item._id === _id);
+      const item = draft.find(item => item._id === _id);
       item.done = !item.done;
     });
 
     setItemList(newItemList);
+
+    console.log('예전 itemList', itemList);
+    console.log('새로운 itemList', newItemList);
   };
 
   // 할일 삭제
   const deleteItem = (_id) => {
     // 데이터 갱신(상태 변경)
-    const newItemList = itemList.filter((item) => item._id !== _id);
+    const newItemList = itemList.filter(item => item._id !== _id);
     setItemList(newItemList);
   };
 
   return (
-    <Todo
-      itemList={itemList}
-      addItem={addItem}
-      toggleDone={toggleDone}
-      deleteItem={deleteItem}
-    />
+    <Todo itemList={ itemList } addItem={ addItem } toggleDone={ toggleDone } deleteItem={ deleteItem } />
   );
+
 }
 
 export default TodoContainer;
