@@ -2,6 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import TodoList from "./pages/TodoList";
+import TodoAdd from "./pages/TodoAdd";
+import TodoDetail from "./pages/TodoDetail";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +13,9 @@ const router = createBrowserRouter([
     children: [
       { path: "home", element: <Home /> },
       { path: "about", element: <About /> },
+      { path: "todolist", element: <TodoList /> },
+      { path: "todoadd", element: <TodoAdd /> },
+      { path: "tododetail", element: <TodoDetail /> },
     ],
   },
 ]);

@@ -1,5 +1,3 @@
-import Header from "./Header";
-
 function Page2() {
   return (
     <>
