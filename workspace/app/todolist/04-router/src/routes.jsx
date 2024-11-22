@@ -5,6 +5,7 @@ import About from "./pages/About";
 import TodoList from "./pages/TodoList";
 import TodoAdd from "./pages/TodoAdd";
 import TodoDetail from "./pages/TodoDetail";
+import TodoEdit from "./pages/TodoEdit";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: "todolist", element: <TodoList /> },
       { path: "todoadd", element: <TodoAdd /> },
       { path: "tododetail", element: <TodoDetail /> },
+      { path: "todoedit", element: <TodoEdit /> },
     ],
   },
 ]);
