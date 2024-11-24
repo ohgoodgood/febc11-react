@@ -1,16 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "./components/Layout";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import TodoList from "./pages/TodoList";
-import TodoAdd from "./pages/TodoAdd";
-import TodoDetail from "./pages/TodoDetail";
-import TodoEdit from "./pages/TodoEdit";
+import Layout from "@components/Layout";
+import Home from "@pages/Home";
+import About from "@pages/About";
+import TodoList from "@pages/TodoList";
+import TodoAdd from "@pages/TodoAdd";
+import TodoDetail from "@pages/TodoDetail";
+import TodoEdit from "@pages/TodoEdit";
+import ErrorPage from "@pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       { path: "home", element: <Home /> },
       { path: "about", element: <About /> },
