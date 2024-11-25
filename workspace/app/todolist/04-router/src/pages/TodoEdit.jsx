@@ -17,8 +17,8 @@ function TodoEdit() {
           <label htmlFor="done">완료 :</label>
           <input type="checkbox" id="done" checked />
           <br />
-          <Link to="/tododetail">수정</Link>
-          <Link to="/tododetail">취소</Link>
+          <Link to="/todolist/1">수정</Link>
+          <Link to="/todolist/2">취소</Link>
         </form>
       </div>
     </div>
