@@ -20,8 +20,11 @@ const router = createBrowserRouter(
         { path: "about", element: <About /> },
         { path: "todolist", element: <TodoList /> },
         { path: "todoadd", element: <TodoAdd /> },
-        { path: "todoedit", element: <TodoEdit /> },
-        { path: "todolist/:_id", element: <TodoDetail /> }, // 동적 세그먼트
+        {
+          path: "todolist/:_id", // 동적 세그먼트, 중첩
+          element: <TodoDetail />,
+          children: [{ path: "todoedit", element: <TodoEdit /> }],
+        },
       ],
     },
   ],
