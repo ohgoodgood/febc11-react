@@ -1,12 +1,23 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
-import Layout from "@components/Layout";
-import Home from "@pages/Home";
-import About from "@pages/About";
-import TodoList from "@pages/TodoList";
-import TodoAdd from "@pages/TodoAdd";
-import TodoDetail from "@pages/TodoDetail";
-import TodoEdit from "@pages/TodoEdit";
-import ErrorPage from "@pages/ErrorPage";
+import { lazy } from "react";
+
+// import Layout from "@components/Layout";
+// import Home from "@pages/Home";
+// import About from "@pages/About";
+// import TodoList from "@pages/TodoList";
+// import TodoAdd from "@pages/TodoAdd";
+// import TodoDetail from "@pages/TodoDetail";
+// import TodoEdit from "@pages/TodoEdit";
+// import ErrorPage from "@pages/ErrorPage";
+
+const Layout = lazy(() => import("@components/Layout"));
+const Home = lazy(() => import("@pages/Home"));
+const About = lazy(() => import("@pages/About"));
+const TodoList = lazy(() => import("@pages/TodoList"));
+const TodoAdd = lazy(() => import("@pages/TodoAdd"));
+const TodoDetail = lazy(() => import("@pages/TodoDetail"));
+const TodoEdit = lazy(() => import("@pages/TodoEdit"));
+const ErrorPage = lazy(() => import("@pages/ErrorPage"));
 
 const router = createBrowserRouter(
   [
