@@ -1,3 +1,4 @@
+import useAxiosInstance from "@hooks/useAxiosInstance";
 import useFetch from "@hooks/useFetch";
 import TodoListItem from "@pages/TodoListItem";
 import { useEffect, useState } from "react";
@@ -24,11 +25,14 @@ function TodoList() {
   // API 서버에서 목록 조회
   const { data } = useFetch({ url: '/todolist' });
 
+  // axios 인스턴스
+  const axios = useAxiosInstance();
+
   // 삭제 작업
-  const handleDelete = (_id) => {
+  const handleDelete = async (_id) => {
     try{
       // TODO: API 서버에 삭제 요청
-  
+      await axios.delete(`/todolist/${ _id }`);
       alert('할일이 삭제 되었습니다.');
 
       // TODO: 목록을 다시 조회
