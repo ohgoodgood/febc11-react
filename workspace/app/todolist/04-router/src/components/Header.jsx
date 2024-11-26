@@ -7,30 +7,9 @@ function Header() {
       <nav>
         <div>
           <ul>
-            <li>
-              <NavLink
-                to="home"
-                className={({ isActive }) => (isActive ? "menu-dark" : "menu")}
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="about"
-                className={({ isActive }) => (isActive ? "menu-dark" : "menu")}
-              >
-                About
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                to="todolist"
-                className={({ isActive }) => (isActive ? "menu-dark" : "menu")}
-              >
-                TodoList
-              </NavLink>
-            </li>
+            <li><NavLink to="home" className={ ({ isActive }) => isActive ? 'menu-dark' : 'menu' }>Home</NavLink></li>
+            <li><NavLink to="about" className={ ({ isActive }) => isActive ? 'menu-dark' : 'menu' }>About</NavLink></li>
+            <li><NavLink to="list" className={ ({ isActive }) => isActive ? 'menu-dark' : 'menu' }>TodoList</NavLink></li>
           </ul>
         </div>
       </nav>

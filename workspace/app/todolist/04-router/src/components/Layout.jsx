@@ -5,9 +5,13 @@ import { Outlet } from "react-router-dom";
 function Layout() {
   return (
     <div className="todoapp">
+
       <Header />
-      <Outlet />
+
+      <Outlet context={{ hello: 'world' }} />
+
       <Footer />
+
     </div>
   );
 }

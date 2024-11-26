@@ -1,53 +1,45 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
 import { lazy } from "react";
-
-// import Layout from "@components/Layout";
-// import Home from "@pages/Home";
-// import About from "@pages/About";
-// import TodoList from "@pages/TodoList";
-// import TodoAdd from "@pages/TodoAdd";
-// import TodoDetail from "@pages/TodoDetail";
-// import TodoEdit from "@pages/TodoEdit";
-// import ErrorPage from "@pages/ErrorPage";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 const Layout = lazy(() => import("@components/Layout"));
-const Home = lazy(() => import("@pages/Home"));
 const About = lazy(() => import("@pages/About"));
-const TodoList = lazy(() => import("@pages/TodoList"));
+const ErrorPage = lazy(() => import("@pages/ErrorPage"));
+const Home = lazy(() => import("@pages/Home"));
 const TodoAdd = lazy(() => import("@pages/TodoAdd"));
 const TodoDetail = lazy(() => import("@pages/TodoDetail"));
 const TodoEdit = lazy(() => import("@pages/TodoEdit"));
-const ErrorPage = lazy(() => import("@pages/ErrorPage"));
+const TodoList = lazy(() => import("@pages/TodoList"));
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <Layout />,
-      errorElement: <ErrorPage />,
-      children: [
-        { index: true, element: <Navigate to="/home" /> },
-        { path: "home", element: <Home /> },
-        { path: "about", element: <About /> },
-        { path: "todolist", element: <TodoList /> },
-        { path: "todolist/todoadd", element: <TodoAdd /> },
-        {
-          path: "todolist/:_id", // 동적 세그먼트, 중첩
-          element: <TodoDetail />,
-          children: [{ path: "todoedit", element: <TodoEdit /> }],
-        },
-      ],
-    },
-  ],
+const router = createBrowserRouter([
   {
-    future: {
-      v7_fetcherPersist: true,
-      v7_normalizeFormMethod: true,
-      v7_partialHydration: true,
-      v7_relativeSplatPath: true,
-      v7_skipActionErrorRevalidation: true,
-    },
+    path: '/',
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <Navigate to="/home" /> },
+      { path: 'home', element: <Home /> },
+      { path: 'about', element: <About /> },
+      { path: 'list', element: <TodoList /> },
+      { path: 'list/add', element: <TodoAdd /> },
+      { 
+        // path: 'list/:_id/:hello/:world', // list/3/a/b => { _id: 3, hello: 'a', world: 'b' }
+        path: 'list/:_id',
+        element: <TodoDetail />,
+        children: [
+          { path: 'edit', element: <TodoEdit /> },
+        ]
+      },
+    ],
   }
-);
+], {
+  future: {
+    // 없으면 콘솔에 경고 표시
+    v7_fetcherPersist: true,
+    v7_normalizeFormMethod: true,
+    v7_partialHydration: true,
+    v7_relativeSplatPath: true,
+    v7_skipActionErrorRevalidation: true,
+  },
+});
 
 export default router;

@@ -8,12 +8,12 @@ function TodoAdd() {
         <form>
           <label htmlFor="title">제목 :</label>
           <input type="text" id="title" autoFocus />
-          <br />
+          <br/>
           <label htmlFor="content">내용 :</label>
           <textarea id="content" cols="23" rows="5"></textarea>
-          <br />
-          <Link to="/todolist/1">추가</Link>
-          <Link to="/todolist">취소</Link>
+          <br/>
+          <Link to="/list/1">추가</Link>
+          <Link to="/list">취소</Link>
         </form>
       </div>
     </div>

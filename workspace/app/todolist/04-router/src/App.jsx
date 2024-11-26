@@ -5,12 +5,10 @@ import { Suspense } from "react";
 
 function App() {
   return (
-    <>
-      <Suspense fallback={<div>Loading...</div>}>
-        <RouterProvider router={router} future={{ v7_startTransition: true }} />
-      </Suspense>
-    </>
+    <Suspense fallback={ <div>Loading...</div> }>
+      <RouterProvider router={router} future={{ v7_startTransition: true }} />
+    </Suspense>
   );
 }
 
-export default App;
+export default App
