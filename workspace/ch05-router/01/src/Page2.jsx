@@ -1,6 +1,6 @@
 import Header from "./Header";
 
-function page2() {
+function Page2() {
   return (
     <>
       <Header />
@@ -9,4 +9,4 @@ function page2() {
   );
 }
 
-export default page2;
+export default Page2;

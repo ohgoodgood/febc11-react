@@ -1,4 +1,4 @@
-function Header() {
+function Header(){
   return (
     <header>
       <h1>Counter - React</h1>

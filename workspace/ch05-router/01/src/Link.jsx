@@ -6,19 +6,16 @@ Link.propTypes = {
 };
 
 function Link({ children, to }) {
-  const handleClick = (e) => {
-    // a태그의 기본 동작 방지
+  const handleClick = e => {
+    // 브라우저의 기본 동작을 제거(a 태그 동작)
     e.preventDefault();
-
-    window.history.pushState(null, "", e.target.pathname);
     // (state, title, url)
-    // pathname: 도메인 이후의 주소
+    // <a href="http://localhost/home.html">home</a>
+    // => pathname: /home.html
+    window.history.pushState(null, '', e.target.pathname);
   };
-
   return (
-    <a href={to} onClick={handleClick}>
-      {children}
-    </a>
+    <a href={ to } onClick={ handleClick }>{ children }</a>
   );
 }
 

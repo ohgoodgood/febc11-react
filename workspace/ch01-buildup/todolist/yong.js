@@ -10,28 +10,28 @@ const yong = (() => {
     const elem = document.createElement(tag);
 
     // 속성 추가
-    if (props) {
-      for (const attrName in props) {
+    if(props){
+      for(const attrName in props){
         const value = props[attrName];
-        if (attrName.toLowerCase().startsWith("on")) {
+        if(attrName.toLowerCase().startsWith('on')){
           elem.addEventListener(attrName.toLowerCase().substring(2), value);
-        } else {
+        }else{
           elem.setAttribute(attrName, value);
         }
       }
     }
 
     // 자식 노드 추가
-    for (let child of children) {
-      if (typeof child === "string" || typeof child === "number") {
+    for(let child of children){
+      if(typeof child === 'string' || typeof child === 'number'){
         child = document.createTextNode(child);
-      } else if (typeof child === "function") {
+      }else if(typeof child === 'function'){
         child = child();
-      } else if (Array.isArray(child)) {
-        child.forEach((c) => elem.appendChild(c));
+      }else if(Array.isArray(child)){
+        child.forEach(c => elem.appendChild(c));
       }
-
-      if (!Array.isArray(child)) elem.appendChild(child);
+      
+      if(!Array.isArray(child)) elem.appendChild(child);
     }
 
     return elem;
@@ -41,40 +41,39 @@ const yong = (() => {
   // createRoot(document.getElementById('root')).render(App);
   const createRoot = (rootNode) => {
     let _appComponent;
-    return (_root = {
+    return _root = {
       // 루트노드 하위에 지정한 함수를 실행해서 받은 컴포넌트를 렌더링 한다.
-      render(appFn) {
+      render(appFn){
         _appComponent = _appComponent || appFn;
-        if (rootNode.firstChild) {
+        if(rootNode.firstChild){
           rootNode.firstChild.remove();
         }
         rootNode.appendChild(_appComponent());
-      },
-    });
+      }
+    };
   };
 
   // 상태값 관리
   // let [count, setCount] = Yong.useState(10);
   const useState = (initValue) => {
-    // 최초에 한번만 initValue 값으로 저장하고 useState가 다시 호출되면 initValue는 무시하고 저장된 값을 사용
-    if (_stateValue === undefined) {
+    // 최초에 한번만 initValue 값으로 저장하고 useState가 다시 호출되면 initValue는 무시하고 저장된 값을 사용 
+    if(_stateValue === undefined){
       // 최초 useState가 호출될때 한번만 실행
       _stateValue = initValue;
     }
 
     // setValue(11);
-    function setValue(newValue) {
+    function setValue(newValue){
       const oldValue = _stateValue; // 10
       _stateValue = newValue; // 11
 
-      console.log("상태가 변경되었나?", oldValue, newValue);
       // 두 값이 같은지 비교해서 같지 않을 경우에(상태가 변경된 경우) 리렌더링한다.
-      // 객체 둘을 비교하는 경우, true/false는 각 객체 안에 같은 값이 들어있는지가 아니라, 각 객체가 같은 메모리 주소를 가리키는지 여부로 판단됨!
-      // 두 값이 모두 undefined 또는 null이면 true
-      // 두 값이 모두 true 또는 false면 true
-      // String 둘을 비교할 경우 둘의 글자 수, 순서, 모든 글자가 같으면 true
-      // Number 둘을 비교할 경우 값이 같거나 둘 다 NaN이면 true
-      if (!Object.is(oldValue, newValue)) {
+      // 객체일때 같은 메모리 주소를 가지고 있으면 true
+      // 두 값이 모두 undefined 이거나 null 이면 true
+      // 두 값이 모두 true 이거나 false 이면 true
+      // String일 경우 두 값의 글자수, 순서, 모든 글자가 같으면 true
+      // Number 라면 같은 값을 가지고 있거나 둘다 NaN이면 true
+      if(!Object.is(oldValue, newValue)){
         _root.render();
       }
     }

@@ -1,14 +1,5 @@
-import "./Button.css";
+import './Button.css';
 
-export default function Button({ children, type = "button", onClick, color }) {
-  return (
-    <button
-      className="rounded-button"
-      type={type}
-      onClick={onClick}
-      style={{ backgroundColor: color }}
-    >
-      {children}
-    </button>
-  );
+export default function Button({ children, type="button", onClick: clickHandler, color }){
+  return <button className="rounded-button" style={{ backgroundColor: color }} type={ type } onClick={ clickHandler }>{ children }</button>
 }

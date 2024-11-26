@@ -1,7 +1,7 @@
 import Counter from "./components/Counter";
 import Header from "./components/Header";
 
-function App() {
+function App(){
   return (
     <div id="app">
       <Header />
@@ -10,4 +10,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
