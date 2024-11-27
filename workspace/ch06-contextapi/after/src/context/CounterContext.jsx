@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { createContext, useState } from "react";
 
 // Context 객체 생성
-const CounterContext = createContext;
+const CounterContext = createContext();
 
 CounterProvider.propTypes = {
   children: PropTypes.node,
