@@ -1,6 +1,5 @@
 import Left3 from "@components/Left3";
-import { SimpleContext } from "@context/SimpleContext";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 function Left2() {
   useEffect(() => {

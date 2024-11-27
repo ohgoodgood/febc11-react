@@ -6,6 +6,7 @@ function Left3() {
     console.log("      # Left3 렌더링.");
   });
 
+  // CounterContet 구독
   const {
     state: { count },
   } = useContext(CounterContext);
