@@ -10,7 +10,7 @@ function App() {
   const countDown = function (step) {
     setCount(count - step);
   };
-  const reset = function (step) {
+  const reset = function () {
     setCount(0);
   };
   const countUp = function (step) {
