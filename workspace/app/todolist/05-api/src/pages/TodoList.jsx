@@ -97,8 +97,8 @@ function TodoList() {
 
       {data && (
         <Pagination
-          totalPages={data?.pagination.totalPages}
-          current={data?.pagination.page}
+          totalPages={data.pagination.totalPages}
+          current={data.pagination.page}
         />
       )}
     </div>
