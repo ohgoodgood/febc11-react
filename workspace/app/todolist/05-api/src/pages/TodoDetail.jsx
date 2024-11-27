@@ -24,7 +24,7 @@ function TodoDetail() {
   const [data, setData] = useState();
   // useEffect(() => {
   //   // TODO: API 서버 통신
-    
+
   //   setData(dummyData);
   // }, []);
 
@@ -38,22 +38,21 @@ function TodoDetail() {
   };
 
   useEffect(() => {
-    fetchDetail();
-  }, []); // 마우트될 때 한번만 호출
+    fetchDetail(); // 이 함수 자체는 필요할 때마다 호출되어야 함
+  }, []); // useEffect는 페이지 마운트 시점에 한 번만 호출
 
   return (
     <div id="main">
       <h2>할일 상세 보기</h2>
 
-      { data && (
+      {data && (
         <>
           <div className="todo">
-            
-            <div>제목 : { data.item.title }</div>
-            <div>내용 : { data.item.content }</div>
-            <div>상태 : { data.item.done ? '완료' : '미완료' }</div>
-            <div>작성일 : { data.item.createdAt }</div>
-            <div>수정일 : { data.item.updatedAt }</div>
+            <div>제목 : {data.item.title}</div>
+            <div>내용 : {data.item.content}</div>
+            <div>상태 : {data.item.done ? "완료" : "미완료"}</div>
+            <div>작성일 : {data.item.createdAt}</div>
+            <div>수정일 : {data.item.updatedAt}</div>
 
             <Link to="./edit">수정</Link>
             <Link to="/list">목록</Link>
@@ -61,8 +60,7 @@ function TodoDetail() {
 
           <Outlet context={{ item: data.item, refetch: fetchDetail }} />
         </>
-      ) }
-
+      )}
     </div>
   );
 }
