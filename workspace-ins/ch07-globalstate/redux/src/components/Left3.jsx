@@ -1,13 +1,13 @@
-import CounterContext from '@context/CounterContext';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 function Left3() {
   useEffect(()=>{
     console.log('      # Left3 렌더링.');
   });
 
-  // CounterContext 구독
-  const { state: { count } } = useContext(CounterContext);
+  // redux
+  const count = useSelector(state => state.count);
 
   return (
     <div>
