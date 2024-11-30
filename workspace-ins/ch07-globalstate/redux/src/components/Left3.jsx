@@ -7,7 +7,13 @@ function Left3() {
   });
 
   // redux
-  const count = useSelector(state => state.count);
+  // useSelector() 훅으로 스토어 접근(자동으로 구독이 됨)
+  // const state = useSelector(state => state);
+  // const count = useSelector(state => state.count);
+  // const date = useSelector(state => state.date);
+
+  // redux-toolkit
+  const count = useSelector(state => state.counterStore.count);
 
   return (
     <div>

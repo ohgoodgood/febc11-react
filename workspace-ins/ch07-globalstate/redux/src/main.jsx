@@ -4,7 +4,11 @@ import App from './App.jsx'
 import './index.css'
 import { Provider } from 'react-redux'
 
-import store from '@redux/store.js';
+// Redux
+// import store from '@redux/store.js';
+
+// redux toolkit
+import store from '@redux-toolkit/store.js'
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>

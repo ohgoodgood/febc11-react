@@ -1,7 +1,7 @@
 import { COUNTER_ACTION } from "@redux/counterActionCreator";
 
 // 초기 상태
-const initialState = { count: 5 };
+const initialState = { count: 5, date: new Date().toString() };
 
 // 현재 상태와 action 객체를 받아서 새로운 상태를 반환하는 순수 함수
 // 상태가 복합 개체일 경우 immer 같은 라이브러리를 사용해서 불변성 유지해야 함
@@ -17,7 +17,7 @@ function counterReducer(state = initialState, action){
     case COUNTER_ACTION.DOWN:
       return { ...state, count: state.count - action.payload.step };
     case COUNTER_ACTION.RESET:
-      return { ...state, count: 0 };
+      return { ...state, count: 0, date: new Date().toString() };
     default:
       return state;
   }

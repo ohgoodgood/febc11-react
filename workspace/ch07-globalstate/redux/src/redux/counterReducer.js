@@ -1,23 +1,23 @@
 import { COUNTER_ACTION } from "@redux/counterActionCreator";
 
-const initialState = { count: 5 };
+// 초기 상태
+const initialState = { count: 5, date: new Date().toString() };
 
-function counterReducer(state = initialState, action) {
-  switch (action.type) {
+// 현재 상태와 action 객체를 받아서 새로운 상태를 반환하는 순수 함수
+// 상태가 복합 개체일 경우 immer 같은 라이브러리를 사용해서 불변성 유지해야 함
+// state: 이전 상태(store가 내부적으로 관리, 이전의 리턴값이 다음의 state로 전달)
+// action: 동작을 정의한 객체(자유롭게 작성). 예시, { type: 'countUp', payload: { step: 2 } }
+// 리턴값: 새로운 상태
+function counterReducer(state = initialState, action){
+  switch(action.type){
     case COUNTER_ACTION.UP:
-      // 객체 state에 대해 불변성 안 지킨 잘못된 예
-      // state.count += action.payload.step;
+      // state.count += action.payload.step; // 불변성 X
       // return state;
-
-      // 새로운 객체로 만들어서 반환해야 함
       return { ...state, count: state.count + action.payload.step };
-
     case COUNTER_ACTION.DOWN:
       return { ...state, count: state.count - action.payload.step };
-
     case COUNTER_ACTION.RESET:
-      return { ...state, count: 0 };
-
+      return { ...state, count: 0, date: new Date().toString() };
     default:
       return state;
   }
