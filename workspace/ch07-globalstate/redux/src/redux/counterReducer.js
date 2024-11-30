@@ -1,11 +1,11 @@
 import { COUNTER_ACTION } from "@redux/counterActionCreator";
 
-const initialState = { count: 0 };
+const initialState = { count: 5 };
 
 function counterReducer(state = initialState, action) {
   switch (action.type) {
     case COUNTER_ACTION.UP:
-      // 불변성 안 지킨 잘못된 예
+      // 객체 state에 대해 불변성 안 지킨 잘못된 예
       // state.count += action.payload.step;
       // return state;
 
