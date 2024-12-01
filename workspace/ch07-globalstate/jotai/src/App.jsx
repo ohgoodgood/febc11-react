@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Left1 from "@components/Left1";
 import Right1 from "@components/Right1";
 
