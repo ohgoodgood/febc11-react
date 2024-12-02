@@ -35,12 +35,14 @@
   border: 1px solid #ccc;
 }
 
-.color-blue-red {
-  background-color: blue;
+/* 빨간 글자에 파란 배경 */
+.color-red-blue{
   color: red;
+  background-color: blue;
 }
 
-.color-red-blue {
-  background-color: red;
+/* 파란 글자에 빨간 배경 */
+.color-blue-red{
   color: blue;
+  background-color: red;
 }

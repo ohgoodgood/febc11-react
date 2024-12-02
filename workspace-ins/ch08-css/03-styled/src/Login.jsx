@@ -1,4 +1,5 @@
-import Button from '@components/Button';
+
+import { Button, Submit } from '@components/StyledButton';
 import './Login.css';
 
 function Login() {
@@ -14,9 +15,9 @@ function Login() {
           <label htmlFor="password">Password:</label>
           <input type="password" id="password" className="input color-blue-red" required />
         </div>
-        <Button bg="gray" color="blue">회원가입</Button>
-        <Button bg="yellow" color="red">카카오 로그인</Button>
-        <Button type="submit">로그인</Button>
+        <Button bg="gray" color="blue" size="12px">회원가입</Button>
+        <Button bg="yellow" color="red" size="12px">카카오 로그인</Button>
+        <Submit size="12px">로그인</Submit>
       </form>
     </div>
   );
