@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Product from "./Product";
 import Shipping from "./Shipping";
 import { BeatLoader } from "react-spinners";
-import axios from "axios";
+import useAxiosInstance from "@hooks/useAxiosInstance";
 
 // 흐름!!
 // 처음 로드될 때(마운트 될 때)는 데이터가 없음. <h1> 부분만 렌더링됨.
@@ -18,16 +18,13 @@ function App() {
 
   const [error, setError] = useState(null);
 
+  const axios = useAxiosInstance();
+
   const fetchData = async (_id) => {
     setIsLoading(true);
 
     try {
-      const res = await axios(
-        `https://11.fesp.shop/products/${_id}?delay=3000`,
-        {
-          headers: { "client-id": "00-nike" },
-        }
-      );
+      const res = await axios(`/products/${_id}?delay=3000`);
       console.log("res: ", res);
       setData(res.data.item);
       setError(null);
