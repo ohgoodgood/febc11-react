@@ -24,7 +24,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const res = await axios(`/products/${_id}?delay=2000`);
+      const res = await axios.get(`/products/${_id}`);
       console.log("res: ", res);
       setData(res.data.item);
       setError(null);
