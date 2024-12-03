@@ -14,7 +14,7 @@ function useAxiosInstance() {
   // 요청 인터셉터 추가하기
   instance.interceptors.request.use((config) => {
     // 요청이 전달되기 전에 필요한 공통 작업 수행
-    console.log(config);
+    console.log("interceptor: ", config);
     config.params = {
       delay: 2000,
       ...config.params, // 기존 쿼리스트링 복사
@@ -28,12 +28,19 @@ function useAxiosInstance() {
     (response) => {
       // 2xx 범위에 있는 상태 코드는 이 함수가 호출됨
       // 응답 데이터를 이용해서 필요한 공통 작업 수행
+      if (response.data?.ok !== undefined) {
+        response.data.ok = !!response.data.ok;
+      }
+
+      console.log("interceptor: ", response);
 
       return response;
     },
     (error) => {
       // 2xx 외의 범위에 있는 상태 코드는 이 함수가 호출됨
       // 공통 에러 처리
+
+      console.error("interceptor: ", error);
 
       return Promise.reject(error);
     }
