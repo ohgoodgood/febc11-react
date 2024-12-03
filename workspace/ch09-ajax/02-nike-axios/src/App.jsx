@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Product from "./Product";
 import Shipping from "./Shipping";
 import { BeatLoader } from "react-spinners";
+import axios from "axios";
 
 // 흐름!!
 // 처음 로드될 때(마운트 될 때)는 데이터가 없음. <h1> 부분만 렌더링됨.
@@ -21,23 +22,15 @@ function App() {
     setIsLoading(true);
 
     try {
-      const res = await fetch(
-        `https://11.fesp.shop/productsasdf/${_id}?delay=3000`,
+      const res = await axios(
+        `https://11.fesp.shop/products/${_id}?delay=3000`,
         {
           headers: { "client-id": "00-nike" },
         }
       );
       console.log("res: ", res);
-      const jsonData = await res.json();
-      console.log("jsonData: ", jsonData);
-
-      if (res.ok) {
-        setData(jsonData.item);
-        setError(null);
-      } else {
-        setError(jsonData);
-        setData(null);
-      }
+      setData(res.data.item);
+      setError(null);
     } catch (err) {
       console.error(err);
       setError({ message: "잠시 후 다시 요청하세요." });
@@ -48,7 +41,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchData(4);
+    fetchData(7);
   }, []);
 
   const basicShippingFees = 3000;
@@ -69,7 +62,7 @@ function App() {
 
   return (
     <>
-      <h1>01 Nike 상품 상세 조회</h1>
+      <h1>02 Nike 상품 상세 조회 - Axios</h1>
 
       {isLoading && <BeatLoader />}
 
