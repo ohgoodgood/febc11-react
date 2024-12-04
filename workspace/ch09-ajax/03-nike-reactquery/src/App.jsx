@@ -3,7 +3,7 @@ import Product from "./Product";
 import Shipping from "./Shipping";
 import { BeatLoader } from "react-spinners";
 import useAxiosInstance from "@hooks/useAxiosInstance";
-import { Slide, ToastContainer } from "react-toastify";
+import { Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
@@ -42,7 +42,7 @@ function App() {
   // }, []);
 
   // 상품 상세 조회
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["products", 7], // 캐시에 사용될 키값을 임의로 지정 (여기서는 7번 상품)
     // 위 쿼리 키에 해당하는 데이터가 캐시에 있으면 가져오고, 없으면 아래 함수 실행
     queryFn: () => axios.get(`/products/7`), // 서버에 ajax 요청 전송 코드 (Promise 반환)
@@ -54,6 +54,17 @@ function App() {
     // useMutation() 훅이 반환한 객체(orderProduct) 안의 mutate()를 호출하면 mutationFn이 호출됨
     // 조회(Get방식)와 달리, 사용자의 어떤 액션이 있을 때 호출되도록 하고 싶을 때 이렇게 useMutation 활용
     mutationFn: (products) => axios.post(`/orders`, products),
+
+    // mutationFn 실행이 정상적으로 완료된 경우
+    onSuccess: () => {
+      toast.success("주문이 완료되었습니다.");
+      refetch(); // useQuery를 다시 호출
+    },
+    // mutationFn 실행 중 에러가 발생한 경우
+    onError: (err) => {
+      // toast.error(err.message); interceptor에서 출력되도록 되어있음
+      console.error(err);
+    },
   });
 
   // 상품 구매
@@ -91,10 +102,7 @@ function App() {
     if (ok) {
       // mutateFn() 호출
       orderProduct.mutate({
-        products: [
-          { _id: 7, quantity },
-          { _id: 1, quantity },
-        ],
+        products: [{ _id: 7, quantity }],
       });
     }
   };
