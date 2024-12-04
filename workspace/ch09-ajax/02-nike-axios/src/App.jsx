@@ -26,7 +26,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const res = await axios.get(`/aaaproducts/${_id}`);
+      const res = await axios.get(`/products/${_id}`);
       console.log("res: ", res);
       setData(res.data.item);
       setError(null);
