@@ -3,6 +3,8 @@ import Product from "./Product";
 import Shipping from "./Shipping";
 import { BeatLoader } from "react-spinners";
 import useAxiosInstance from "@hooks/useAxiosInstance";
+import { Slide, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // 흐름!!
 // 처음 로드될 때(마운트 될 때)는 데이터가 없음. <h1> 부분만 렌더링됨.
@@ -24,7 +26,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const res = await axios.get(`/products/${_id}`);
+      const res = await axios.get(`/aaaproducts/${_id}`);
       console.log("res: ", res);
       setData(res.data.item);
       setError(null);
@@ -63,7 +65,7 @@ function App() {
 
       {isLoading && <BeatLoader />}
 
-      {error && <p>{error.message}</p>}
+      {/*error && <p>{error.message}</p>*/}
 
       {data && (
         <div>
@@ -90,6 +92,19 @@ function App() {
           <Shipping fees={shippingFees} handlePayment={handlePayment} />
         </div>
       )}
+      <ToastContainer
+        theme="light"
+        position="top-center"
+        autoClose={1000}
+        rtl={false}
+        pauseOnFocusLoss
+        pauseOnHover
+        draggable
+        closeOnClick
+        hideProgressBar={true}
+        newestOnTop={false}
+        transition={Slide}
+      />
     </>
   );
 }

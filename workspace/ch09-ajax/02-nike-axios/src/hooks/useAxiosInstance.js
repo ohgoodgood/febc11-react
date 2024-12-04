@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 
 function useAxiosInstance() {
   const instance = axios.create({
@@ -29,7 +30,8 @@ function useAxiosInstance() {
       // 2xx 범위에 있는 상태 코드는 이 함수가 호출됨
       // 응답 데이터를 이용해서 필요한 공통 작업 수행
       if (response.data?.ok !== undefined) {
-        response.data.ok = !!response.data.ok; // boolean으로 변환
+        // 0 또는 1 반환됨
+        response.data.ok = !!response.data.ok; // 0 또는 1을 boolean으로 변환
       }
 
       console.log("interceptor: ", response);
@@ -41,6 +43,10 @@ function useAxiosInstance() {
       // 공통 에러 처리
 
       console.error("interceptor: ", error);
+      const message = "잠시 후 다시 요청해주세요.";
+      // alert(message);
+      // error.message = message;
+      toast.error(message);
 
       return Promise.reject(error);
     }
