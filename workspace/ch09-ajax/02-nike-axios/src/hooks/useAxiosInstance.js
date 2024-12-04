@@ -29,7 +29,7 @@ function useAxiosInstance() {
       // 2xx 범위에 있는 상태 코드는 이 함수가 호출됨
       // 응답 데이터를 이용해서 필요한 공통 작업 수행
       if (response.data?.ok !== undefined) {
-        response.data.ok = !!response.data.ok;
+        response.data.ok = !!response.data.ok; // boolean으로 변환
       }
 
       console.log("interceptor: ", response);
