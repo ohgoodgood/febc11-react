@@ -1,3 +1,5 @@
+import useAxiosInstance from "@hooks/useAxiosInstance";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 
@@ -10,7 +12,26 @@ function TodoAdd() {
     formState: { errors },
   } = useForm();
 
+  const axios = useAxiosInstance();
+
   const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
+
+  const addItem = useMutation({
+    mutationFn: (item) => axios.post("/todolist", item),
+    onSuccess: () => {
+      alert("할일이 추가 되었습니다.");
+      // 지정한 키값을 포함한 쿼리 캐시를 무효화
+      queryClient.invalidateQueries(["todolist"]);
+      // 할일 목록으로 이동
+      navigate(-1);
+    },
+    onError: (err) => {
+      console.error("서버에서 에러 응답");
+      alert(err?.message || "할일 추가에 실패했습니다.");
+    },
+  });
 
   // handleSubmit에서 검증을 통과할 경우 호출됨
   const onSubmit = (item) => {
@@ -58,7 +79,7 @@ function TodoAdd() {
     <div id="main">
       <h2>할일 추가</h2>
       <div className="todo">
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(addItem.mutate)}>
           <label htmlFor="title">제목 :</label>
           <input
             type="text"

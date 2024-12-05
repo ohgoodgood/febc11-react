@@ -14,7 +14,7 @@ function useAxiosInstance() {
   instance.interceptors.request.use((config) => {
     // 요청이 전달되기 전에 필요한 공통 작업 수행
     config.params = {
-      delay: 2000,
+      // delay: 2000,
       ...config.params, // 기존 쿼리스트링 복사
     };
 
