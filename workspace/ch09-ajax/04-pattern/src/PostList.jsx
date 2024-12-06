@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 // 게시글 목록조회 API 호출
 function fetchPostList() {
   // Promise를 반환. 상태관리는 이 함수를 호출하는 함수에서 별도로 호출해야 함.
-  return axios.get("https://11.fesp.shop/posts?type=brunch", {
+  return axios.get("https://11.fesp.shop/posts?type=brunch&delay=4000", {
     headers: {
       "client-id": "00-brunch",
     },

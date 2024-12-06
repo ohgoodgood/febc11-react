@@ -22,7 +22,7 @@ function FetchOnRender() {
     });
   }, []);
 
-  // 1) 마운트 시점(data가 없는(undefined) 시점)에 일단 렌더링될 요소
+  // 마운트 시점(data가 없는(undefined) 시점)에 일단 렌더링될 요소
   if (!data) {
     return <div>게시글 로딩 중...</div>;
   }
@@ -34,6 +34,8 @@ function FetchOnRender() {
     </>
   );
 }
+
+////////////////////////////////////////////////////////////////////////
 
 // 댓글 목록 API 데이터 호출
 function fetchReplies() {
