@@ -26,7 +26,7 @@ const router = createBrowserRouter(
   ],
   {
     future: {
-      // 없으면 콘솔에 경고 표시
+      // 없으면 콘솔에 경고 표시 (예정된 업데이트 이슈)
       v7_fetcherPersist: true,
       v7_normalizeFormMethod: true,
       v7_partialHydration: true,
