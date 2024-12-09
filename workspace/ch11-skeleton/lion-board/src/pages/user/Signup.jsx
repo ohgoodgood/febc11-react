@@ -11,7 +11,7 @@ export default function Signup() {
     register,
     handleSubmit,
     formState: { errors },
-    setError,
+    setError, // 서버로부터 받은 에러 메시지를 특정 필드에 매핑
   } = useForm();
 
   const axios = useAxiosInstance();
@@ -34,6 +34,9 @@ export default function Signup() {
     onError: (err) => {
       console.error(err);
       if (err.response?.data.errors) {
+        // forEach 구문과 setError 구문으로 각각의 필드에 에러 메시지 출력
+        // 여기서 error.path는 에러가 발생한 필드를 지칭
+        // 서버로부터 전송된 error.msg를 해당 필드의 error 객체 안의 message로 지정
         err.response?.data.errors.forEach((error) =>
           setError(error.path, { message: error.msg })
         );
