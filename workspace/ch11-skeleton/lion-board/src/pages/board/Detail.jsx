@@ -15,7 +15,7 @@ export default function Detail() {
     staleTime: 1000 * 10,
   });
 
-  console.log("data: ", data);
+  console.log("article data: ", data);
 
   if (!data) {
     return <div>로딩 중...</div>;
