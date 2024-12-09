@@ -76,6 +76,7 @@ export default function Edit() {
   const { type, _id } = useParams();
   const axios = useAxiosInstance();
 
+  // 우선 데이터 가져오기 (기존에 작성되어 있던 내용 가져오는 것)
   const { data } = useQuery({
     queryKey: ["posts", _id],
     queryFn: () => axios.get(`/posts/${_id}`),
@@ -85,6 +86,7 @@ export default function Edit() {
 
   const navigate = useNavigate();
 
+  // useForm으로 유효성 검사, 통과 시 서버에 submit
   const {
     register,
     handleSubmit,
@@ -98,6 +100,7 @@ export default function Edit() {
 
   const queryClient = useQueryClient();
 
+  // 게시글 수정
   const updateItem = useMutation({
     mutationFn: (formData) => axios.patch(`/posts/${_id}`, formData),
     onSuccess: () => {
