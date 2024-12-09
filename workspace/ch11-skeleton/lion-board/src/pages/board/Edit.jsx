@@ -93,6 +93,7 @@ export default function Edit() {
     formState: { errors },
   } = useForm({
     defaultValues: {
+      // 기존 데이터가 있으면 기본값으로 출력
       title: data?.item.title,
       content: data?.item.content,
     },

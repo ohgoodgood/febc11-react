@@ -20,10 +20,20 @@ export default function New() {
   const queryClient = useQueryClient();
 
   const addItem = useMutation({
+    // mutationFn: (formData) => {
+    //   formData.type = type;
+    //   return axios.post(`/posts`, formData);
+    // },
+
     mutationFn: (formData) => {
-      formData.type = type;
-      return axios.post(`/posts`, formData);
+      const body = {
+        title: formData.title,
+        content: formData.content,
+        type: type,
+      };
+      return axios.post("/posts", body);
     },
+
     onSuccess: () => {
       alert("게시물이 등록되었습니다.");
       queryClient.invalidateQueries(["posts", type]);
