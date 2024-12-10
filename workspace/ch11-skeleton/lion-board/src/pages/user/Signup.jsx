@@ -18,7 +18,7 @@ export default function Signup() {
 
   const addUser = useMutation({
     mutationFn: async (userInfo) => {
-      // 파일 업로드 기능 (여기서는 프로필 이미지 업로드. 회원가입 시에 사용자가 이미지를 첨부했다면)
+      // 파일 업로드 (여기서는 프로필 이미지 업로드. 회원가입 시에 사용자가 이미지를 첨부했다면)
       if (userInfo.attach.length > 0) {
         const imageFormData = new FormData();
         imageFormData.append("attach", userInfo.attach[0]);
@@ -32,7 +32,7 @@ export default function Signup() {
           data: imageFormData,
         });
 
-        // 업로드된 파일 정보에서 주소를 떼다가 유저 이미지 정보로 저장, 파일 정보는 삭제
+        // 서버에 업로드되어 있는 파일의 주소만 떼다가 유저 정보에 저장, 업로드했던 전체 파일은 삭제
         userInfo.image = fileRes.data.item[0];
         delete userInfo.attach;
       }
