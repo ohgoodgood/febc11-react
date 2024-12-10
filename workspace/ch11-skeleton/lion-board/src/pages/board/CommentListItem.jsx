@@ -5,7 +5,7 @@ CommentListItem.propTypes = {
   item: PropTypes.shape({
     _id: PropTypes.number.isRequired,
     user: PropTypes.shape({
-      _id: PropTypes.number.isRequired,
+      _id: PropTypes.number,
       name: PropTypes.string,
       image: PropTypes.string,
     }).isRequired,
