@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
-  // `useUserStore`는 Zustand의 `create` 함수로 생성된 사용자 상태 저장소(sotrage)
+  // `useUserStore`는 Zustand의 `create` 함수로 생성된 사용자 상태 저장소(storage)
   // `create` 함수 내부에서 정의된 `set` 메서드는 상태를 업데이트하는 역할
   // `store => store.setUser`는 상태 저장소의 `setUser` 메서드에 접근하는 콜백
   // 최종적으로, `useUserStore`에서 추출한 `setUser`를 현재 문서에서의 `setUser` 변수에 할당
