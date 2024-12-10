@@ -47,39 +47,37 @@ export default function Detail() {
   return (
     <main className="container mx-auto mt-4 px-4">
       <section className="mb-8 p-4">
-        <form>
-          <div className="font-semibold text-xl">{data.item.title}</div>
-          <div className="text-right text-gray-400">{data.item.user.name}</div>
-          <div className="mb-4">
-            <div>
-              <pre className="font-roboto w-full p-2 whitespace-pre-wrap">
-                {data.item.content}
-              </pre>
-            </div>
-            <hr />
+        <div className="font-semibold text-xl">{data.item.title}</div>
+        <div className="text-right text-gray-400">{data.item.user.name}</div>
+        <div className="mb-4">
+          <div>
+            <pre className="font-roboto w-full p-2 whitespace-pre-wrap">
+              {data.item.content}
+            </pre>
           </div>
-          <div className="flex justify-end my-4">
-            <Link
-              to={`/${type}`}
-              className="bg-orange-500 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded"
-            >
-              목록
-            </Link>
-            <Link
-              to={`/${type}/${_id}/edit`}
-              className="bg-gray-900 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded"
-            >
-              수정
-            </Link>
-            <button
-              type="submit"
-              onClick={onSubmit}
-              className="bg-red-500 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded"
-            >
-              삭제
-            </button>
-          </div>
-        </form>
+          <hr />
+        </div>
+        <div className="flex justify-end my-4">
+          <Link
+            to={`/${type}`}
+            className="bg-orange-500 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded"
+          >
+            목록
+          </Link>
+          <Link
+            to={`/${type}/${_id}/edit`}
+            className="bg-gray-900 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded"
+          >
+            수정
+          </Link>
+          <button
+            type="submit"
+            onClick={onSubmit}
+            className="bg-red-500 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded"
+          >
+            삭제
+          </button>
+        </div>
       </section>
 
       <CommentList />
