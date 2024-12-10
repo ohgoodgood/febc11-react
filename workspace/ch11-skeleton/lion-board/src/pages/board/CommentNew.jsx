@@ -21,14 +21,13 @@ export default function CommentNew() {
   const addReply = useMutation({
     mutationFn: (formData) => {
       const body = {
-        content: formData.comment,
+        content: formData.content,
         name: formData.name,
       };
       return axios.post(`/posts/${_id}/replies`, body);
     },
 
     onSuccess: () => {
-      alert("댓글이 등록되었습니다.");
       queryClient.invalidateQueries({ queryKey: ["replies", _id] });
       // navigate(`/${type}/${_id}`);
       reset();
@@ -50,10 +49,10 @@ export default function CommentNew() {
             className="block p-2 w-full text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
             placeholder="내용을 입력하세요."
             // name="comment"
-            {...register("comment", { required: "내용을 입력해주세요." })}
+            {...register("content", { required: "내용을 입력해주세요." })}
           ></textarea>
 
-          <InputError target={errors.comment} />
+          <InputError target={errors.content} />
         </div>
         <button
           type="submit"
