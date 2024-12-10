@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 ListItem.propTypes = {
   item: PropTypes.shape({
     _id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     user: PropTypes.shape({
       name: PropTypes.string.isRequired,
     }),
@@ -20,7 +20,7 @@ export default function ListItem({ item }) {
       <td className="p-2 text-center">{item._id}</td>
       <td className="p-2 truncate indent-4">
         <Link to={`${item._id}`} className="cursor-pointer">
-          {item.title}
+          {item.title || "(제목 없음)"}
         </Link>
       </td>
       <td className="p-2 text-center truncate">{item.user.name}</td>

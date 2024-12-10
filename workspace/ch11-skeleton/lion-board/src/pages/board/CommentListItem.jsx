@@ -6,14 +6,14 @@ CommentListItem.propTypes = {
     _id: PropTypes.number.isRequired,
     user: PropTypes.shape({
       _id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
+      name: PropTypes.string,
       image: PropTypes.string,
-    }),
+    }).isRequired,
     content: PropTypes.string.isRequired,
     like: PropTypes.number,
     createdAt: PropTypes.string.isRequired,
-    updatedAt: PropTypes.string.isRequired,
-  }),
+    updatedAt: PropTypes.string,
+  }).isRequired,
 };
 
 export default function CommentListItem({ item }) {
@@ -25,10 +25,13 @@ export default function CommentListItem({ item }) {
           className="w-8 h-8 rounded-full mr-2"
         />
         <Link to="" className="text-orange-400">
-          {item.user.name}
+          {item.user.name || "익명"}
         </Link>
-        <time className="ml-auto text-gray-500" dateTime="2024.07.07 12:34:56">
-          {item.updatedAt}
+        <time
+          className="ml-auto text-gray-500"
+          dateTime={item.updatedAt || item.createdAt}
+        >
+          {item.updatedAt || item.createdAt}
         </time>
       </div>
       <div className="flex justify-between items-center mb-2">
