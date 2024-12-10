@@ -29,7 +29,7 @@ export default function CommentNew() {
 
     onSuccess: () => {
       alert("댓글이 등록되었습니다.");
-      queryClient.invalidateQueries(["replies", _id]);
+      queryClient.invalidateQueries({ queryKey: ["replies", _id] });
       // navigate(`/${type}/${_id}`);
       reset();
     },
