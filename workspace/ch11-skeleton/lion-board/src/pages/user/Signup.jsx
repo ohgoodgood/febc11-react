@@ -17,15 +17,30 @@ export default function Signup() {
   const axios = useAxiosInstance();
 
   const addUser = useMutation({
-    mutationFn: (formData) => {
-      const body = {
-        type: "user",
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-      };
+    mutationFn: async (userInfo) => {
+      // 파일 업로드 기능 (여기서는 프로필 이미지 업로드. 회원가입 시에 사용자가 이미지를 첨부했다면)
+      if (userInfo.attach.length > 0) {
+        const imageFormData = new FormData();
+        imageFormData.append("attach", userInfo.attach[0]);
 
-      return axios.post(`/users`, body);
+        const fileRes = await axios("/files", {
+          method: "post",
+          headers: {
+            // 텍스트가 아니라 파일 업로드이므로 헤더에서 설정 변경
+            "Content-type": "multipart/form-data",
+          },
+          data: imageFormData,
+        });
+
+        // 업로드된 파일 정보에서 주소를 떼다가 유저 이미지 정보로 저장, 파일 정보는 삭제
+        userInfo.image = fileRes.data.item[0];
+        delete userInfo.attach;
+      }
+
+      userInfo.type = "user";
+
+      console.log(userInfo);
+      return axios.post(`/users`, userInfo);
     },
     onSuccess: () => {
       alert("회원가입이 완료되었습니다.");

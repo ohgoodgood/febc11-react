@@ -9,7 +9,7 @@ CommentListItem.propTypes = {
     user: PropTypes.shape({
       _id: PropTypes.number,
       name: PropTypes.string,
-      image: PropTypes.string,
+      image: PropTypes.object,
     }).isRequired,
     content: PropTypes.string.isRequired,
     like: PropTypes.number,
@@ -37,10 +37,14 @@ export default function CommentListItem({ item }) {
   return (
     <div className="shadow-md rounded-lg p-4 mb-4">
       <div className="flex justify-between items-center mb-2">
-        <img
-          src={`https://11.fesp.shop/${item.user.image}`}
-          className="w-8 h-8 rounded-full mr-2"
-        />
+        {item.user.image && (
+          <img
+            className="w-8 rounded-full mr-2"
+            src={`https://11.fesp.shop${item.user.image.path}`}
+            alt={`${item.user.name} 프로필 이미지`}
+          />
+        )}
+
         <Link to="" className="text-orange-400">
           {item.user.name || "익명"}
         </Link>
