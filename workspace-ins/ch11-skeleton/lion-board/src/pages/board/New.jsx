@@ -26,7 +26,7 @@ export default function New() {
     },
     onSuccess: () => {
       alert('게시물이 등록되었습니다.');
-      queryClient.invalidateQueries(['posts', type]);
+      queryClient.invalidateQueries({ queryKey: ['posts', type] });
       navigate(`/${type}`);
     },
     onError: (err) => {
@@ -50,7 +50,7 @@ export default function New() {
               className="w-full py-2 px-4 border rounded-md dark:bg-gray-700 border-gray-300 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
               { ...register('title', { required: '제목은 필수입니다.' }) }
             />
-            <InputError />
+            <InputError target={ errors.title } />
           </div>
           <div className="my-4">
             <label className="block text-lg content-center" htmlFor="content">내용</label>
