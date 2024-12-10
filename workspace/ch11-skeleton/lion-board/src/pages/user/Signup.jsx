@@ -20,6 +20,7 @@ export default function Signup() {
     mutationFn: async (userInfo) => {
       // 파일 업로드 (여기서는 프로필 이미지 업로드. 회원가입 시에 사용자가 이미지를 첨부했다면)
       if (userInfo.attach.length > 0) {
+        // 파일을 `FormData` 객체로 감싸고, API에 POST 요청을 통해 업로드
         const imageFormData = new FormData();
         imageFormData.append("attach", userInfo.attach[0]);
 
@@ -32,14 +33,18 @@ export default function Signup() {
           data: imageFormData,
         });
 
-        // 서버에 업로드되어 있는 파일의 주소만 떼다가 유저 정보에 저장, 업로드했던 전체 파일은 삭제
-        userInfo.image = fileRes.data.item[0];
-        delete userInfo.attach;
+        // 클라이언트가 파일 데이터를 서버로 전송하면, 서버는 지정된 경로(클라우드 스토리지, 서버의 파일 시스템 등)에 파일을 저장하고, 저장된 파일에 접근 가능한 URL을 생성하여 클라이언트에게 반환한다.
+
+        // 그렇게 받은 이미지 URL을 `userInfo.image`에 저장하고, 더 이상 필요 없는 `userInfo.attach`는 삭제
+        userInfo.image = fileRes.data.item[0]; // 반환된 데이터에서 첫번째 url
+        delete userInfo.attach; // 업로드했던 로컬 파일 객체 삭제
       }
 
+      // `userInfo` 객체에 `type: "user"`를 추가
       userInfo.type = "user";
 
       console.log(userInfo);
+      // API에 POST 요청을 보내 최종적으로 회원가입 데이터 전송
       return axios.post(`/users`, userInfo);
     },
     onSuccess: () => {
