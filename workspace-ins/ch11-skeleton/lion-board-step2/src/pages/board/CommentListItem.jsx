@@ -1,6 +1,5 @@
 import useAxiosInstance from "@hooks/useAxiosInstance";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import useUserStore from "@zustand/userStore";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 
@@ -8,7 +7,6 @@ CommentListItem.propTypes = {
   item: PropTypes.shape({
     _id: PropTypes.number.isRequired,
     user: PropTypes.shape({
-      _id: PropTypes.number,
       name: PropTypes.string,
       image: PropTypes.object,
     }).isRequired,
@@ -17,8 +15,6 @@ CommentListItem.propTypes = {
   }).isRequired,
 };
 export default function CommentListItem({ item }) {
-
-  const { user } = useUserStore();
 
   const queryClient = useQueryClient();
   const axios = useAxiosInstance();
@@ -46,11 +42,7 @@ export default function CommentListItem({ item }) {
       </div>
       <div className="flex justify-between items-center mb-2">
         <pre className="whitespace-pre-wrap text-sm">{ item.content }</pre>
-
-        { (user?._id === item.user._id) && 
-          <button type="button" onClick={ () => removeItem.mutate(_id) } className="bg-red-500 py-1 px-2 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded">삭제</button>
-        }
-        
+        <button type="button" onClick={ () => removeItem.mutate(_id) } className="bg-red-500 py-1 px-2 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded">삭제</button>
       </div>
     </div>
   );
