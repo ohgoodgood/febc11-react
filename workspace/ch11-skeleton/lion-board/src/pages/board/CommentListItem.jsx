@@ -20,6 +20,7 @@ CommentListItem.propTypes = {
 };
 
 export default function CommentListItem({ item }) {
+  // user 상태 가져오기
   const { user } = useUserStore();
 
   const queryClient = useQueryClient();
@@ -61,6 +62,7 @@ export default function CommentListItem({ item }) {
       <div className="flex justify-between items-center mb-2">
         <pre className="whitespace-pre-wrap text-sm">{item.content}</pre>
 
+        {/* user._id가 있고, 그것이 item.user._id와 일치할 경우에만 (로그인된 유저 본인이 작성한 댓글일 때만) 삭제 버튼 보여주기 */}
         {user?._id === item.user._id && (
           <button
             type="submit"
