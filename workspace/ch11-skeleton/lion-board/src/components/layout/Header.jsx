@@ -3,8 +3,10 @@ import useUserStore from "@zustand/userStore";
 import { Link } from "react-router-dom";
 
 export default function Header() {
+  // user 상태와 resetUser 메서드 가져오기
   const { user, resetUser } = useUserStore();
 
+  // 로그아웃 기능
   const handleLogout = (event) => {
     event.preventDefault();
     resetUser();
@@ -41,6 +43,7 @@ export default function Header() {
 
         <div className="w-1/2 order-1 flex justify-end items-center md:order-2 md:w-auto">
           {user ? (
+            // 로그아웃 기능 추가
             <form onSubmit={handleLogout}>
               <p className="flex items-center">
                 {user.image && (
