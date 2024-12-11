@@ -17,7 +17,13 @@ export default function Login() {
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm();
+  } = useForm({
+    // 테스트를 위해 기본값 세팅
+    defaultValues: {
+      email: "guri@guri.com",
+      password: "guriguri",
+    },
+  });
   const axios = useAxiosInstance();
   const login = useMutation({
     mutationFn: (formData) => axios.post("/users/login", formData),
