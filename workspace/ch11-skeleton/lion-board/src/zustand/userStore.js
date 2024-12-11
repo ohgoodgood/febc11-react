@@ -14,10 +14,12 @@ const UserStore = (set) => ({
 // const useUserStore = create(UserStore);
 
 // storage를 사용하는 경우
-const useUserStore = create(persist(UserStore), {
-  name: "user",
-  storage: createJSONStorage(() => sessionStorage),
-});
+const useUserStore = create(
+  persist(UserStore, {
+    name: "user",
+    storage: createJSONStorage(() => sessionStorage),
+  })
+);
 
 // storage를 사용하는 경우 (하나로 통합된 방식)
 
