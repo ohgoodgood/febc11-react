@@ -3,7 +3,7 @@ import useAxiosInstance from "@hooks/useAxiosInstance";
 import { useMutation } from "@tanstack/react-query";
 import useUserStore from "@zustand/userStore";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Login() {
   // `useUserStore`는 Zustand의 `create` 함수로 생성된 사용자 상태 저장소(storage)
@@ -11,7 +11,11 @@ export default function Login() {
   // `store => store.setUser`는 상태 저장소의 `setUser` 메서드에 접근하는 콜백
   // 최종적으로, `useUserStore`에서 추출한 `setUser`를 현재 문서에서의 `setUser` 변수에 할당
   const setUser = useUserStore((store) => store.setUser);
+
+  const location = useLocation();
+
   const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -24,7 +28,9 @@ export default function Login() {
       password: "guriguri",
     },
   });
+
   const axios = useAxiosInstance();
+
   const login = useMutation({
     mutationFn: (formData) => axios.post("/users/login", formData),
     onSuccess: (res) => {
@@ -42,7 +48,7 @@ export default function Login() {
       });
 
       alert(`${res.data.item.name}님, 반갑습니다.`);
-      navigate(`/`);
+      navigate(location.state?.from || "/");
     },
     onError: (err) => {
       console.error(err);
