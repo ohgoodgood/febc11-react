@@ -33,6 +33,7 @@ function useAxiosInstance() {
     // }
 
     // refresh 요청일 경우, Authorization 헤더는 이미 refresh token으로 지정되어 있음
+    // 로그인이 되어있으면서, 리프레시가 아닌 다른 작업을 할 때에는 항상 액세스토큰을 보내라!
     if (user && config.url !== REFRESH_URL) {
       config.headers.Authorization = `Bearer ${user.accessToken}`;
     }
@@ -67,7 +68,7 @@ function useAxiosInstance() {
           // 리프레시 유알엘로 보냈는데도 인증 실패, 즉 리프레시토큰까지 만료된 경우
           navigateLogin();
         } else if (user) {
-          // 로그인 했으나 액세스토큰이 만료된 경우
+          // 로그인은 되어 있으나 액세스토큰이 만료된 경우
           // 리프레시토큰으로 액세스토큰 재발급 요청
           const {
             data: { accessToken },
@@ -78,7 +79,7 @@ function useAxiosInstance() {
           });
           setUser({ ...user, accessToken });
 
-          // 기존 요청을 갱신된 액세스토큰과 함께 다시 전송, 그 결과를 return
+          // 갱신된 액세스토큰을 요청 전송 설정에 추가, 그 결과를 return
           config.headers.Authorization = `Bearer ${accessToken}`;
           return axios(config);
         } else {
