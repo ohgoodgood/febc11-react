@@ -99,7 +99,7 @@ function useAxiosInstance() {
     gotoLogin &&
       navigate("/users/login", {
         // 원래 가려던 페이지의 정보를 state 객체로 전달. 로그인 후에 원래대로 이동할 수 있도록
-        state: { form: location.pathname },
+        state: { from: location.pathname },
       });
   }
 
