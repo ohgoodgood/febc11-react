@@ -79,7 +79,7 @@ function useAxiosInstance() {
           });
           setUser({ ...user, accessToken });
 
-          // 갱신된 액세스토큰을 요청 전송 설정에 추가, 그 결과를 return
+          // 갱신된 액세스토큰을 담아서 기존 요청 전송, 그 결과를 return
           config.headers.Authorization = `Bearer ${accessToken}`;
           return axios(config);
         } else {
