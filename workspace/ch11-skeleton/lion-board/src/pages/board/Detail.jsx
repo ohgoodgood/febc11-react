@@ -55,6 +55,10 @@ export default function Detail() {
         <title>{data.item.title} - 멋사컴</title>
         <meta property="og:title" content={data.item.title} />
         <meta property="og:description" content={data.item.content} />
+        <meta property="og:image" content="/images/febc.png" />
+        <meta property="og:url" content="https://board.fesp.shop" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="멋사컴" />
       </Helmet>
 
       <main className="container mx-auto mt-4 px-4">

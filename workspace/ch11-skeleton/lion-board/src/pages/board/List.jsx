@@ -27,10 +27,19 @@ export default function List() {
 
   const list = data.item.map((item) => <ListItem key={item._id} item={item} />);
 
+  let boardTitle;
+  if (type === "info") {
+    boardTitle = "정보 공유";
+  } else if (type === "free") {
+    boardTitle = "자유 게시판";
+  } else if (type === "brunch") {
+    boardTitle = "브런치 스토리";
+  }
+
   return (
     <>
       <Helmet>
-        <title>{type} - 멋사컴즈</title>
+        <title>{boardTitle} - 멋사컴즈</title>
         <meta property="og:title" content={`${type} 게시판`} />
         <meta
           property="og:description"
