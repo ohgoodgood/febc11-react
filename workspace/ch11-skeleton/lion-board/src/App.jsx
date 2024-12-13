@@ -2,6 +2,7 @@ import { RouterProvider } from "react-router-dom";
 import router from "@/routes";
 import useThemeStore from "@zustand/themeStore";
 import { HelmetProvider } from "react-helmet-async";
+import { Suspense } from "react";
 
 function App() {
   const { isDarkMode } = useThemeStore();
@@ -14,7 +15,9 @@ function App() {
 
   return (
     <HelmetProvider>
-      <RouterProvider router={router} future={{ v7_startTransition: true }} />
+      <Suspense fallback={<div>로딩 중...</div>}>
+        <RouterProvider router={router} future={{ v7_startTransition: true }} />
+      </Suspense>
     </HelmetProvider>
   );
 }
