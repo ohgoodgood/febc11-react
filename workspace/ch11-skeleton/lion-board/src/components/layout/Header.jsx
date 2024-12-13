@@ -1,15 +1,18 @@
 import ThemeButton from "@components/ThemeButton";
 import useUserStore from "@zustand/userStore";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Header() {
   // user 상태와 resetUser 메서드 가져오기
   const { user, resetUser } = useUserStore();
 
+  const navigate = useNavigate();
+
   // 로그아웃 기능
   const handleLogout = (event) => {
     event.preventDefault();
     resetUser();
+    navigate("/");
   };
 
   return (
