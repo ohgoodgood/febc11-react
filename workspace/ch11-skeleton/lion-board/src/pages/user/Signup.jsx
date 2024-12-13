@@ -71,13 +71,24 @@ export default function Signup() {
     <>
       <Helmet>
         <title>회원 가입 - 멋사컴</title>
+
+        <meta
+          name="description"
+          content="다양한 주제의 커뮤니티와 활발한 소통을 위한 플랫폼입니다. 관심사에 따라 참여하고, 의견을 나누세요."
+        />
+        <meta
+          name="keywords"
+          content="커뮤니티, 소통, 포럼, 관심사, 온라인 모임, 커뮤니티 서비스"
+        />
+        <meta name="author" content="Front End Boot Camp" />
+
         <meta property="og:title" content="회원 가입" />
         <meta
           property="og:description"
           content="무료 회원 가입 후 멋사컴의 모든 서비스를 이용하세요."
         />
         <meta property="og:image" content="/images/febc.png" />
-        <meta property="og:url" content="https://board.fesp.shop" />
+        <meta property="og:url" content="https://11.fesp.shop" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="멋사컴" />
       </Helmet>
