@@ -34,12 +34,14 @@ export default function List() {
     boardTitle = "자유 게시판";
   } else if (type === "brunch") {
     boardTitle = "브런치 스토리";
+  } else {
+    boardTitle = "";
   }
 
   return (
     <>
       <Helmet>
-        <title>{boardTitle} - 멋사컴즈</title>
+        <title>{boardTitle} - 멋사컴</title>
 
         <meta
           name="description"

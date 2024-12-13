@@ -64,7 +64,7 @@ export default function Detail() {
         />
         <meta name="author" content="Front End Boot Camp" />
 
-        <meta property="og:title" content={data.item.title} />
+        <meta property="og:title" content={data?.item.title || "로딩 중..."} />
         <meta property="og:description" content={data.item.content} />
         <meta property="og:image" content="/images/febc.png" />
         <meta property="og:url" content="https://11.fesp.shop" />
