@@ -14,7 +14,7 @@ const Detail = lazy(() => import("@pages/board/Detail"));
 const Edit = lazy(() => import("@pages/board/Edit"));
 const List = lazy(() => import("@pages/board/List"));
 const New = lazy(() => import("@pages/board/New"));
-// const ErrorPage = lazy(() => import("@pages/ErrorPage"));
+const ErrorPage = lazy(() => import("@pages/ErrorPage"));
 const MainPage = lazy(() => import("@pages/index"));
 const Login = lazy(() => import("@pages/user/Login"));
 const Signup = lazy(() => import("@pages/user/Signup"));
@@ -33,6 +33,12 @@ const router = createBrowserRouter(
         { path: "users/signup", element: <Signup /> },
         { path: "users/login", element: <Login /> },
       ],
+    },
+    {
+      path: "/",
+      errorElement: <ErrorPage />,
+      element: <Layout />,
+      children: [],
     },
   ],
   {
