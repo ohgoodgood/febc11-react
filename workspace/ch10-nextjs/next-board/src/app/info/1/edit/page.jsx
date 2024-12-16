@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
     <main className="min-w-[320px] p-4">
@@ -51,12 +53,12 @@ export default function Page() {
             >
               수정
             </button>
-            <a
+            <Link
               href="/info/1"
               className="bg-gray-900 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded"
             >
               취소
-            </a>
+            </Link>
           </div>
         </form>
       </section>

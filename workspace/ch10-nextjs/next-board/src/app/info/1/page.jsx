@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Page() {
   return (
     <main className="container mx-auto mt-4 px-4">
@@ -20,18 +22,18 @@ export default function Page() {
             <hr />
           </div>
           <div className="flex justify-end my-4">
-            <a
+            <Link
               href="/info"
               className="bg-orange-500 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded"
             >
               목록
-            </a>
-            <a
+            </Link>
+            <Link
               href="/info/1/edit"
               className="bg-gray-900 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded"
             >
               수정
-            </a>
+            </Link>
             <button
               type="submit"
               className="bg-red-500 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded"
@@ -52,9 +54,9 @@ export default function Page() {
               src="https://api.fesp.shop/files/00-sample/user-muzi.webp"
               alt="어피치 프로필 이미지"
             />
-            <a href="" className="text-orange-400">
+            <Link href="" className="text-orange-400">
               어피치
-            </a>
+            </Link>
             <time
               className="ml-auto text-gray-500"
               dateTime="2024.07.02 14:11:22"
@@ -82,9 +84,9 @@ export default function Page() {
               src="https://api.fesp.shop/files/00-sample/user-muzi.webp"
               alt="무지 프로필 이미지"
             />
-            <a href="" className="text-orange-400">
+            <Link href="" className="text-orange-400">
               무지
-            </a>
+            </Link>
             <time
               className="ml-auto text-gray-500"
               dateTime="2024.07.07 12:34:56"
