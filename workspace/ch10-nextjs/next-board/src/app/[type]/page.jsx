@@ -1,10 +1,26 @@
+import ListItem from "@/app/[type]/ListItem";
 import { createParamsFromClient } from "next/dist/server/request/params";
 import Link from "next/link";
+
+// 게시물 목록 조회 기능
+async function fetchPosts(type) {
+  const url = `https://11.fesp.shop/posts?type=${type}`;
+  const res = await fetch(url, {
+    headers: { "client-id": "00-board" },
+  });
+  return await res.json();
+}
 
 export default async function Page({ params }) {
   // const { type } = params; // Next.js 14까지는 params가 객체로 전달됨
   // Next.js 15에서는 params가 Promise로 전달됨
   const { type } = await params;
+
+  const data = await fetchPosts(type);
+
+  console.log(data.item.length, "건 조회됨.");
+
+  const list = data.item.map((item) => <ListItem key={item._id} item={item} />);
 
   return (
     <main className="min-w-80 p-10">
@@ -63,36 +79,7 @@ export default async function Page({ params }) {
               </th>
             </tr>
           </thead>
-          <tbody>
-            <tr className="border-b border-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-              <td className="p-2 text-center">2</td>
-              <td className="p-2 truncate indent-4">
-                <Link href="/info/2" className="cursor-pointer">
-                  안녕하세요.
-                </Link>
-              </td>
-              <td className="p-2 text-center truncate">용쌤</td>
-              <td className="p-2 text-center hidden sm:table-cell">29</td>
-              <td className="p-2 text-center hidden sm:table-cell">2</td>
-              <td className="p-2 truncate text-center hidden sm:table-cell">
-                2024.07.05 13:39:23
-              </td>
-            </tr>
-            <tr className="border-b border-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition duration-300 ease-in-out">
-              <td className="p-2 text-center">1</td>
-              <td className="p-2 truncate indent-4">
-                <Link href="/info/1" className="cursor-pointer">
-                  좋은 소식이 있습니다.
-                </Link>
-              </td>
-              <td className="p-2 text-center truncate">제이지</td>
-              <td className="p-2 text-center hidden sm:table-cell">22</td>
-              <td className="p-2 text-center hidden sm:table-cell">5</td>
-              <td className="p-2 truncate text-center hidden sm:table-cell">
-                2024.07.03 17:59:13
-              </td>
-            </tr>
-          </tbody>
+          <tbody>{list}</tbody>
         </table>
         <hr />
 
