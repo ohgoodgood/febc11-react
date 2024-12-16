@@ -11,10 +11,14 @@ async function fetchPosts(type) {
   return await res.json();
 }
 
-export const metadata = {
-  title: "게시물 목록",
-  description: "게시물 목록 페이지입니다.",
-};
+// 메타데이터 객체를 반환하는 함수 - 메타데이터를 동적으로 지정
+export async function generateMetadata({ params }) {
+  const { type } = await params;
+  return {
+    title: `${type} 게시물 목록`,
+    description: "게시물 목록 페이지입니다.",
+  };
+}
 
 export default async function Page({ params }) {
   // const { type } = params; // Next.js 14까지는 params가 객체로 전달됨

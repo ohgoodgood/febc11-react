@@ -2,11 +2,23 @@ import Link from "next/link";
 
 // 게시물 상세조회 기능
 async function fetchPost(_id) {
+  console.log(_id, " 상세 조회");
   const url = `https://11.fesp.shop/posts/${_id}`;
   const res = await fetch(url, {
     headers: { "client-id": "00-board" },
   });
   return await res.json();
+}
+
+// 메타데이터 객체를 반환하는 함수 - 메타데이터를 동적으로 지정
+export async function generateMetadata({ params }) {
+  const { _id } = await params;
+  const data = await fetchPost(_id);
+  // 위 코드가 여러 번 작성되더라도, fetch API가 실제로 여러 번 호출되지는 않는다. nextJS에서 fetch API에 대해 제공하는 캐시 기능 때문. 컴포넌트가 렌더링되는 라이프사이클 내에서는 동일 url에 대한 동일 호출은 최초 한 번만 수행되고 이후에는 캐시된 데이터가 사용됨.
+  return {
+    title: data.item.title,
+    description: data.item.content,
+  };
 }
 
 export default async function Page({ params }) {
